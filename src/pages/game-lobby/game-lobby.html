@@ -1,0 +1,24 @@
+<!--
+  Generated template for the GameLobbyPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{user.name}} @ {{room}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+    <ion-row *ngFor="let user of otherUsers">
+      <ion-label>{{user.name}}</ion-label>
+      <ion-icon *ngIf="user.isAdmin " name="wine"></ion-icon>
+    </ion-row>
+  </ion-grid>
+</ion-content>
