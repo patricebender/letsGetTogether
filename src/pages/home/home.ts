@@ -13,8 +13,11 @@ export class HomePage {
 
   user = {
     name: '',
-    icon: ''
+    icon: '',
+    isAdmin: false
   }
+
+
 
   room = '';
 
