@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 
-import { Socket } from 'ng-socket-io';
+import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
 
 /**
@@ -19,17 +19,25 @@ import {Observable} from "rxjs";
 export class GameLobbyPage {
 
   room = '';
-  user = {};
+  user = {
+    name: '',
+    icon: '',
+    isAdmin: false
+  }
   otherUsers = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private toastCtrl: ToastController) {
     this.user = navParams.get('user');
     this.room = navParams.get('room');
 
-    this.usersChanged().subscribe( (data) => {
+    this.usersChanged().subscribe((data) => {
       this.showToast(data['user'].name + " " + data['event']);
     })
 
+    this.onAdminPromotion().subscribe(() => {
+      this.showToast("You are the new Admin");
+      this.user.isAdmin = true;
+    })
 
     this.receiveClientList();
   }
@@ -46,12 +54,11 @@ export class GameLobbyPage {
     this.socket.emit('requestUserList');
     this.socket.on('receiveUserList', (data) => {
       this.otherUsers = data.userList;
-      console.log(data);
     })
   }
 
   private usersChanged() {
-    let observable = new Observable( observer => {
+    let observable = new Observable(observer => {
       this.socket.on('users-changed', function (data) {
         observer.next(data);
       })
@@ -67,4 +74,16 @@ export class GameLobbyPage {
     toast.present();
   }
 
+  private onAdminPromotion() {
+    let observable = new Observable(observer => {
+      this.socket.on('adminPromotion', function (data) {
+        observer.next(data);
+      })
+    })
+    return observable;
+  }
+
+  startGame() {
+
+  }
 }

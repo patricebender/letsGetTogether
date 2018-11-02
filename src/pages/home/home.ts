@@ -22,17 +22,18 @@ export class HomePage {
   room = '';
 
   constructor(public navCtrl: NavController, private socket: Socket) {
-    this.roomJoined();
   }
 
   joinRoomRequest() {
     this.socket.connect();
+    this.roomJoined();
     this.socket.emit('joinRoomRequest', {user: this.user, room: this.room})
   }
 
   roomJoined() {
-      this.socket.on('roomJoinSucceed', () => {
-        this.navCtrl.push('GameLobbyPage', { user: this.user, room: this.room});
+      this.socket.on('roomJoinSucceed', (data) => {
+        console.log(data.user);
+        this.navCtrl.push('GameLobbyPage', { user: data.user, room: data.room});
       })
 
 

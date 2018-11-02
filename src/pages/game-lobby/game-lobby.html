@@ -20,5 +20,6 @@
       <ion-label>{{user.name}}</ion-label>
       <ion-icon *ngIf="user.isAdmin " name="wine"></ion-icon>
     </ion-row>
+    <button  ion-button color="danger" *ngIf="user.isAdmin" (click)="startGame()">Let's get fucked up!</button>
   </ion-grid>
 </ion-content>
