@@ -8,13 +8,15 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import {TabsPage} from "../pages/tabs/tabs";
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {}};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    TabsPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ const config: SocketIoConfig = { url: 'http://localhost:3001', options: {}};
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    TabsPage
   ],
   providers: [
     StatusBar,
