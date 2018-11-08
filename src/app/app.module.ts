@@ -7,27 +7,26 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import {TabsPage} from "../pages/tabs/tabs";
+import {GamePageModule} from "../pages/game/game.module";
 
 const config: SocketIoConfig = { url: 'http://localhost:3001', options: {}};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
+    GamePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    TabsPage
+    TabsPage,
   ],
   providers: [
     StatusBar,

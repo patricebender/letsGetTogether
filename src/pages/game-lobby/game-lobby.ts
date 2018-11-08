@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
+import {GamePage} from "../game/game";
 
 /**
  * Generated class for the GameLobbyPage page.
@@ -40,6 +41,7 @@ export class GameLobbyPage {
     })
 
     this.receiveClientList();
+    this.waitForStart();
   }
 
   ionViewDidLoad() {
@@ -84,6 +86,13 @@ export class GameLobbyPage {
   }
 
   startGame() {
+    this.socket.emit('startGame')
+  }
+
+  waitForStart() {
+    this.socket.on('gameStarted', (data) => {
+        this.navCtrl.setRoot(GamePage);
+      });
 
   }
 }

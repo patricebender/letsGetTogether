@@ -10,4 +10,4 @@ import { TabsPage } from './tabs';
     IonicPageModule.forChild(TabsPage),
   ]
 })
-export class JoinOrCreatePageModule {}
+export class TabsModule {}
