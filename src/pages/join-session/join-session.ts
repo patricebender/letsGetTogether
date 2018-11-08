@@ -29,8 +29,12 @@ export class JoinSessionPage {
   constructor(public navCtrl: NavController, private socket: Socket) {
   }
 
-  joinRoomRequest() {
+  ionViewDidLoad() {
     this.socket.connect();
+  }
+
+  joinRoomRequest() {
+
     this.roomJoined();
     this.socket.emit('joinRoomRequest', {user: this.user, room: this.room})
   }

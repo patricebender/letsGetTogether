@@ -28,8 +28,13 @@ export class GameLobbyPage {
   otherUsers = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private toastCtrl: ToastController) {
-    this.user = navParams.get('user');
-    this.room = navParams.get('room');
+
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad GameLobbyPage');
+    this.user = this.navParams.get('user');
+    this.room = this.navParams.get('room');
 
     this.usersChanged().subscribe((data) => {
       this.showToast(data['user'].name + " " + data['event']);
@@ -42,10 +47,6 @@ export class GameLobbyPage {
 
     this.receiveClientList();
     this.waitForStart();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GameLobbyPage');
   }
 
   ionViewWillLeave() {
@@ -91,6 +92,7 @@ export class GameLobbyPage {
 
   waitForStart() {
     this.socket.on('gameStarted', (data) => {
+        this.socket.disconnect();
         this.navCtrl.setRoot(GamePage);
       });
 

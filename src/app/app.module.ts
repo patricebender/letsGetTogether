@@ -10,7 +10,7 @@ import { MyApp } from './app.component';
 import {TabsPage} from "../pages/tabs/tabs";
 import {GamePageModule} from "../pages/game/game.module";
 
-const config: SocketIoConfig = { url: 'http://localhost:3001', options: {}};
+const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
 
 @NgModule({
   declarations: [
