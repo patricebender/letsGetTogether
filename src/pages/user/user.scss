@@ -1,0 +1,20 @@
+page-user {
+
+  .bigAvatar {
+    width: 100px;
+    height: 100px;
+    border: #007aff solid 1px;
+    margin: 20px;
+    border-radius: 50px;
+  }
+
+  .editAvatar {
+    position: relative;
+    left: 72px;
+  }
+  .userNameBigBottom {
+    position: relative;
+    text-align: center;
+    width: fit-content;
+  }
+}
