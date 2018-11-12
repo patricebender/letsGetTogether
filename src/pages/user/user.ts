@@ -8,7 +8,6 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {ChooseAvatarPage} from "../popover/chooseAvatar";
 
 
-
 /**
  * Generated class for the UserPage page.
  *
@@ -24,7 +23,7 @@ import {ChooseAvatarPage} from "../popover/chooseAvatar";
 export class UserPage {
 
 
-  constructor(private sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private popoverCtrl:PopoverController) {
+  constructor(private sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private popoverCtrl: PopoverController) {
   }
 
   avatarFileNames = [];
@@ -38,27 +37,13 @@ export class UserPage {
   }
 
   set userName(name) {
-    Settings.user.name = name ;
+    Settings.user.name = name;
   }
 
   get userName() {
     return Settings.user.name;
   }
 
-  randomNames = [
-    'Peter Punsch',
-    'Ronald Rum',
-    'Angela Absinth',
-    'Ricky la Fleur',
-    'Lahey Liquor',
-    'Randy Burgers',
-    'Karl Kirschwasser',
-    'Gisela Gin-Fizz',
-    'Valerie Vodka',
-    'Marta Mule',
-    'Juicy Julian',
-    'Boozy Bubbles'
-  ]
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
@@ -71,9 +56,6 @@ export class UserPage {
 
 
   saveAndContinue() {
-    this.socket.disconnect();
-    Settings.user.name = this.name;
-    // Settings.user.avatar = this.avatar;
     this.navCtrl.setRoot(JoinSessionPage);
   }
 
@@ -88,26 +70,12 @@ export class UserPage {
       let avatarFileNames = data.avatarFileNames;
       if (avatarFileNames) {
         Settings.avatarFileNames = avatarFileNames;
-        if(!Settings.user.avatar){
-          Settings.user.avatar = this.getRandomAvatar() ;
-          console.log("set avatar to: " + this.avatar)
-        }
+        //init random user
+        Settings.initRandomUser(this.socket);
       }
     })
-    if (this.userName === ''){
-     this.userName = this.getRandomName();
-    }
+
   }
 
-  private getRandomAvatar() {
 
-    if(this.avatarFileNames){
-      return Settings.avatarFileNames[Math.floor(Math.random()*Settings.avatarFileNames.length)];
-    }
-    return '';
-  }
-
-  private getRandomName() {
-     return this.randomNames[Math.floor(Math.random()*this.randomNames.length)];
-  }
 }

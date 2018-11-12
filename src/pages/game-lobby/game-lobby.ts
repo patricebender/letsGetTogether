@@ -5,6 +5,7 @@ import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
 import {GamePage} from "../game/game";
 import {TabsPage} from "../tabs/tabs";
+import {Settings} from "../settings";
 
 /**
  * Generated class for the GameLobbyPage page.
@@ -22,13 +23,18 @@ export class GameLobbyPage {
 
   static isLobbyJoined = false;
 
-  room = '';
-
-  user = {
-    name: '',
-    icon: '',
-    isAdmin: false
+  get room() {
+    return Settings.room;
   }
+
+  get user() {
+    return Settings.user;
+  }
+
+  set isAdmin(value) {
+    Settings.user.isAdmin = value;
+  }
+
   otherUsers = [];
   events = [];
 
@@ -43,7 +49,7 @@ export class GameLobbyPage {
 
     let adminEvent = this.onAdminPromotion().subscribe(() => {
       this.showToast("You are the new Admin");
-      this.user.isAdmin = true;
+      this.isAdmin = true;
     })
 
     let waitForStart = this.waitForStart().subscribe((data) => {
@@ -54,18 +60,30 @@ export class GameLobbyPage {
       this.otherUsers = data['userList'];
     });
 
+    let updateUserEvent = this.onUpdateUser().subscribe((data) => {
+      console.log("update user ",data['user'] )
+      Settings.updateUser(data['user']);
+    })
 
-    this.events.push(userEvent, adminEvent, waitForStart, waitForClientList);
+
+    this.events.push(userEvent, adminEvent, waitForStart, waitForClientList, updateUserEvent);
   }
 
 
-  ionViewDidEnter() {
 
-    this.user = this.navParams.get('user');
-    this.room = this.navParams.get('room');
-    GameLobbyPage.isLobbyJoined = true;
+  ionViewDidEnter() {
+    if (!this.user.name) {
+      this.navCtrl.setRoot('JoinSessionPage');
+    } else {
+      GameLobbyPage.isLobbyJoined = true;
+      this.socket.emit('requestUserList');
+      console.log(this.user);
+    }
+
+  }
+
+  ionViewWillEnter() {
     this.registerEvents();
-    this.socket.emit('requestUserList');
   }
 
   //unsubscribe from all events to prevent multiple subscriptions on re-entering
@@ -111,7 +129,6 @@ export class GameLobbyPage {
   }
 
 
-
   waitForStart() {
     let observable = new Observable(observer => {
       this.socket.on('gameStarted', (data) => {
@@ -126,7 +143,16 @@ export class GameLobbyPage {
   }
 
   exitLobby() {
-    this.socket.disconnect();
+    this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
+  }
+
+  private onUpdateUser() {
+    return new Observable(observer => {
+      this.socket.on('updateUser', (data) => {
+
+        observer.next(data);
+      })
+    })
   }
 }

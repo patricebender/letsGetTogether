@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Socket} from "ng-socket-io";
+import {Settings} from "../settings";
 
 /**
  * Generated class for the GamePage page.
@@ -18,12 +19,18 @@ export class GamePage {
 
   static isGameStarted = false;
 
-  user = '';
   otherUsers = [];
-  room = '';
+
+  get user() {
+    return Settings.user;
+  }
+
+  get room() {
+    return Settings.room;
+  }
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
+  constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
   }
 
   get gameState() {
@@ -35,12 +42,25 @@ export class GamePage {
   }
 
   ionViewDidEnter() {
-    GamePage.isGameStarted = true;
+    if (!this.user.name) {
+      this.navCtrl.setRoot('JoinSessionPage');
+    } else {
+      GamePage.isGameStarted = true;
+    }
+
   }
 
   exitGame() {
     GamePage.isGameStarted = false;
-    this.socket.disconnect();
+    this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
+  }
+
+  private showToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
   }
 }
