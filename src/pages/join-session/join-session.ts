@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController} from 'ionic-angular';
+import {Component} from '@angular/core';
+import {AlertController, IonicPage, NavController} from 'ionic-angular';
 import {Socket} from "ng-socket-io";
+import {Observable} from "rxjs";
+import {Settings} from "../settings";
 
 /**
  * Generated class for the JoinSessionPage page.
@@ -16,37 +18,70 @@ import {Socket} from "ng-socket-io";
 })
 export class JoinSessionPage {
 
-  user = {
-    name: '',
-    icon: '',
-    isAdmin: false
+
+
+
+  events = [];
+
+  room=''
+
+  constructor(public navCtrl: NavController, private socket: Socket,public alertCtrl: AlertController) {
   }
 
 
 
-  room = '';
 
-  constructor(public navCtrl: NavController, private socket: Socket) {
+  get selectedCategories() {
+    return Settings.selectedCategories;
+  }
+  get user(){
+    return Settings.user;
   }
 
-  ionViewDidLoad() {
+
+
+  ionViewDidEnter() {
     this.socket.connect();
+    this.registerEvents();
+  }
+
+  ionViewWillLeave() {
+    this.events.forEach((event) => {
+      event.unsubscribe();
+    })
   }
 
   joinRoomRequest() {
-
-    this.roomJoined();
-    this.socket.emit('joinRoomRequest', {user: this.user, room: this.room})
+    this.socket.emit('joinRoomRequest', {user: Settings.user, room: this.room})
   }
 
   roomJoined() {
-    this.socket.on('roomJoinSucceed', (data) => {
-      console.log(data.user);
-      this.navCtrl.setRoot('GameLobbyPage', { user: data.user, room: data.room});
-    })
 
+    let observable = new Observable(observer => {
+      this.socket.on('roomJoinSucceed', (data) => {
+        observer.next(data);
+      })
+    })
+    return observable;
 
   }
 
+
+
+  private registerEvents() {
+    let roomJoinEvent = this.roomJoined().subscribe((data) => {
+      this.navCtrl.setRoot('GameLobbyPage', {socket: this.socket, user: data['user'], room: data['room']});
+    });
+
+    this.events.push(roomJoinEvent);
+  }
+
+  createGameRequest() {
+    console.log(Settings.selectedCategories)
+  }
+
+  goToCreateRoom() {
+    this.navCtrl.push('CreateSessionPage');
+  }
 }
 

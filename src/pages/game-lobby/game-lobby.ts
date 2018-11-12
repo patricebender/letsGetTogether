@@ -4,6 +4,7 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {Socket} from 'ng-socket-io';
 import {Observable} from "rxjs";
 import {GamePage} from "../game/game";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the GameLobbyPage page.
@@ -19,45 +20,68 @@ import {GamePage} from "../game/game";
 })
 export class GameLobbyPage {
 
+  static isLobbyJoined = false;
+
   room = '';
+
   user = {
     name: '',
     icon: '',
     isAdmin: false
   }
   otherUsers = [];
+  events = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private toastCtrl: ToastController) {
 
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GameLobbyPage');
-    this.user = this.navParams.get('user');
-    this.room = this.navParams.get('room');
-
-    this.usersChanged().subscribe((data) => {
+  registerEvents() {
+    let userEvent = this.usersChanged().subscribe((data) => {
       this.showToast(data['user'].name + " " + data['event']);
     })
 
-    this.onAdminPromotion().subscribe(() => {
+    let adminEvent = this.onAdminPromotion().subscribe(() => {
       this.showToast("You are the new Admin");
       this.user.isAdmin = true;
     })
 
-    this.receiveClientList();
-    this.waitForStart();
+    let waitForStart = this.waitForStart().subscribe((data) => {
+      this.navCtrl.setRoot(TabsPage);
+    })
+
+    let waitForClientList = this.receiveClientList().subscribe((data) => {
+      this.otherUsers = data['userList'];
+    });
+
+
+    this.events.push(userEvent, adminEvent, waitForStart, waitForClientList);
   }
 
+
+  ionViewDidEnter() {
+
+    this.user = this.navParams.get('user');
+    this.room = this.navParams.get('room');
+    GameLobbyPage.isLobbyJoined = true;
+    this.registerEvents();
+    this.socket.emit('requestUserList');
+  }
+
+  //unsubscribe from all events to prevent multiple subscriptions on re-entering
   ionViewWillLeave() {
-    this.socket.disconnect();
+    GameLobbyPage.isLobbyJoined = false;
+    this.events.forEach((event) => {
+      event.unsubscribe();
+    })
   }
 
   private receiveClientList() {
-    this.socket.emit('requestUserList');
-    this.socket.on('receiveUserList', (data) => {
-      this.otherUsers = data.userList;
-    })
+    return new Observable(observer => {
+      this.socket.on('receiveUserList', (data) => {
+        observer.next(data);
+      })
+    });
   }
 
   private usersChanged() {
@@ -86,15 +110,23 @@ export class GameLobbyPage {
     return observable;
   }
 
+
+
+  waitForStart() {
+    let observable = new Observable(observer => {
+      this.socket.on('gameStarted', (data) => {
+        observer.next(data);
+      });
+    })
+    return observable;
+  }
+
   startGame() {
     this.socket.emit('startGame')
   }
 
-  waitForStart() {
-    this.socket.on('gameStarted', (data) => {
-        this.socket.disconnect();
-        this.navCtrl.setRoot(GamePage);
-      });
-
+  exitLobby() {
+    this.socket.disconnect();
+    this.navCtrl.setRoot('JoinSessionPage');
   }
 }

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {IonicPage, NavController, Tabs} from 'ionic-angular';
 import {GamePage} from "../game/game";
+import {GameLobbyPage} from "../game-lobby/game-lobby";
 
 /**
  * Generated class for the JoinOrCreatePage tabs.
@@ -16,12 +17,22 @@ import {GamePage} from "../game/game";
 })
 export class TabsPage {
 
-  joinSessionRoot = 'JoinSessionPage'
-  createSessionRoot = 'CreateSessionPage'
   gameRoot = 'GamePage'
+  @ViewChild('myTabs') tabRef: Tabs;
+
+
+  ionViewWillEnter() {
+    this.tabRef.select(0);
+  }
+
+
 
   get isGameStarted() {
     return GamePage.isGameStarted;
+  }
+
+  get isLobbyJoined() {
+    return GameLobbyPage.isLobbyJoined;
   }
   constructor(public navCtrl: NavController) {
   }

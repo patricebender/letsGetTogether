@@ -7,26 +7,30 @@ import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 
 
 import { MyApp } from './app.component';
-import {TabsPage} from "../pages/tabs/tabs";
-import {GamePageModule} from "../pages/game/game.module";
+import {TabsModule} from "../pages/tabs/tabs.module";
+import {UserPageModule} from "../pages/user/user.module";
+import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
+import {ChooseAvatarPageModule} from "../pages/popover/choose-avatar.module";
 
-const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
+//const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
+const config: SocketIoConfig = { url: 'localhost:3001', options: {}};
 
 @NgModule({
   declarations: [
     MyApp,
-    TabsPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     SocketIoModule.forRoot(config),
-    GamePageModule
+    TabsModule,
+    UserPageModule,
+    JoinSessionPageModule,
+    ChooseAvatarPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    TabsPage,
+    MyApp
   ],
   providers: [
     StatusBar,

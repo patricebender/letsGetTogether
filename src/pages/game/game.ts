@@ -17,26 +17,30 @@ import {Socket} from "ng-socket-io";
 export class GamePage {
 
   static isGameStarted = false;
-  static gameSocket: Socket;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    GamePage.isGameStarted = true;
+  user = '';
+  otherUsers = [];
+  room = '';
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
   }
 
   get gameState() {
     return GamePage.isGameStarted;
   }
 
-  get gameSocket(){
-    return GamePage.gameSocket;
-  }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad GamePage');
   }
 
+  ionViewDidEnter() {
+    GamePage.isGameStarted = true;
+  }
+
   exitGame() {
     GamePage.isGameStarted = false;
+    this.socket.disconnect();
     this.navCtrl.setRoot('JoinSessionPage');
   }
 }

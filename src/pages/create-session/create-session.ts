@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Settings} from "../settings";
 
 /**
  * Generated class for the CreateSessionPage page.
@@ -15,7 +16,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CreateSessionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+
+  constructor(private alertCtrl: AlertController, navCtrl: NavController, public navParams: NavParams) {
+  }
+
+  chooseCategories() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Choose the Categories you want to play');
+
+    for (let category of Settings.categories) {
+      alert.addInput({
+        type: 'checkbox',
+        label: category.name,
+        value: "",
+        checked: category.enabled
+      });
+    }
+
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Okay',
+      handler: (data: any) => {
+        let i = 0;
+        for (let box of alert.data.inputs) {
+
+          Settings.categories[i].enabled = box.checked;
+          i++;
+        }
+      }
+    });
+
+    alert.present();
   }
 
   ionViewDidLoad() {
