@@ -17,9 +17,11 @@ import {Settings} from "../settings";
 })
 export class GamePage {
 
-  static isGameStarted = false;
+  get isGameStarted() {
+    return Settings.game.isGameStarted;
+  }
 
-  otherUsers = [];
+
 
   get user() {
     return Settings.user;
@@ -33,9 +35,6 @@ export class GamePage {
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
   }
 
-  get gameState() {
-    return GamePage.isGameStarted;
-  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GamePage');
@@ -44,14 +43,11 @@ export class GamePage {
   ionViewDidEnter() {
     if (!this.user.name) {
       this.navCtrl.setRoot('JoinSessionPage');
-    } else {
-      GamePage.isGameStarted = true;
     }
-
   }
 
   exitGame() {
-    GamePage.isGameStarted = false;
+    Settings.game.isGameStarted = false;
     this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
   }

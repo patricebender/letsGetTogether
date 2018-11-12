@@ -18,9 +18,13 @@
 
   <ion-grid>
     <ion-row *ngFor="let user of otherUsers">
-      <ion-label>{{user.name}}</ion-label>
-      <ion-icon *ngIf="user.isAdmin " name="wine"></ion-icon>
+      <ion-item>
+        <ion-avatar item-start><img src="../../assets/avatar/{{user.avatar}}"></ion-avatar>
+        <ion-label>{{user.name}}</ion-label>
+        <ion-icon item-end *ngIf="user.isAdmin" name="ribbon"></ion-icon>
+      </ion-item>
+
     </ion-row>
-    <button  ion-button color="danger" *ngIf="user.isAdmin" (click)="startGame()">Let's get fucked up!</button>
+    <button ion-button color="danger" *ngIf="user.isAdmin" (click)="startGame()">Let's get fucked up!</button>
   </ion-grid>
 </ion-content>

@@ -23,6 +23,7 @@ export class JoinSessionPage {
 
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, private socket: Socket, public alertCtrl: AlertController) {
+
   }
 
 
@@ -46,17 +47,11 @@ export class JoinSessionPage {
 
   ionViewWillEnter() {
     this.registerEvents();
-    if (!this.user.name) {
+    Settings.listenForUserChanges(this.socket);
 
-      this.socket.emit('requestAvatarList');
-      this.socket.on('receiveAvatarList', (data) => {
-        let avatarFileNames = data.avatarFileNames;
-        if (avatarFileNames) {
-          Settings.avatarFileNames = avatarFileNames;
-          //init random user
-          Settings.initRandomUser(this.socket);
-        }
-      })
+    if (!this.user.name || !this.user.avatar) {
+      Settings.initRandomUser(this.socket);
+      Settings.listenForUserChanges;
     }
   }
 
@@ -100,12 +95,7 @@ export class JoinSessionPage {
       this.showToast('No room found, create one instead!')
     })
 
-    let updateUserEvent = this.onUpdateUser().subscribe((data) => {
-      console.log("updating user: " + data['user']);
-      Settings.updateUser(data['user']);
-    })
-
-    this.events.push(roomJoinEvent, noSuchRoomEvent, updateUserEvent);
+    this.events.push(roomJoinEvent, noSuchRoomEvent);
   }
 
 
@@ -125,12 +115,6 @@ export class JoinSessionPage {
     toast.present();
   }
 
-  private onUpdateUser() {
-    return new Observable(observer => {
-      this.socket.on('updateUser', (data) => {
-        observer.next(data);
-      })
-    })
-  }
+
 }
 

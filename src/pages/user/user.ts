@@ -24,6 +24,7 @@ export class UserPage {
 
 
   constructor(private sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private popoverCtrl: PopoverController) {
+    Settings.listenForUserChanges(this.socket);
   }
 
   avatarFileNames = [];
@@ -50,10 +51,9 @@ export class UserPage {
   }
 
   ionViewWillEnter() {
-    this.socket.connect();
-    this.initAvatarAndUser();
-  }
+    Settings.initRandomUser(this.socket);
 
+  }
 
   saveAndContinue() {
     this.navCtrl.setRoot(JoinSessionPage);
@@ -64,18 +64,6 @@ export class UserPage {
     popover.present();
   }
 
-  initAvatarAndUser() {
-    this.socket.emit('requestAvatarList');
-    this.socket.on('receiveAvatarList', (data) => {
-      let avatarFileNames = data.avatarFileNames;
-      if (avatarFileNames) {
-        Settings.avatarFileNames = avatarFileNames;
-        //init random user
-        Settings.initRandomUser(this.socket);
-      }
-    })
-
-  }
 
 
 }

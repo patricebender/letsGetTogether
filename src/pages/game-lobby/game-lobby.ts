@@ -35,11 +35,14 @@ export class GameLobbyPage {
     Settings.user.isAdmin = value;
   }
 
-  otherUsers = [];
+  get otherUsers() {
+    return Settings.game.otherUsers;
+  }
   events = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private toastCtrl: ToastController) {
-
+    Settings.subscribeUserList(this.socket);
+    Settings.subscribeToAdminPromotion(this.socket);
   }
 
   registerEvents() {
@@ -47,26 +50,13 @@ export class GameLobbyPage {
       this.showToast(data['user'].name + " " + data['event']);
     })
 
-    let adminEvent = this.onAdminPromotion().subscribe(() => {
-      this.showToast("You are the new Admin");
-      this.isAdmin = true;
-    })
-
     let waitForStart = this.waitForStart().subscribe((data) => {
+      Settings.game.isGameStarted = true;
       this.navCtrl.setRoot(TabsPage);
     })
 
-    let waitForClientList = this.receiveClientList().subscribe((data) => {
-      this.otherUsers = data['userList'];
-    });
 
-    let updateUserEvent = this.onUpdateUser().subscribe((data) => {
-      console.log("update user ",data['user'] )
-      Settings.updateUser(data['user']);
-    })
-
-
-    this.events.push(userEvent, adminEvent, waitForStart, waitForClientList, updateUserEvent);
+    this.events.push(userEvent, waitForStart);
   }
 
 
@@ -76,6 +66,7 @@ export class GameLobbyPage {
       this.navCtrl.setRoot('JoinSessionPage');
     } else {
       GameLobbyPage.isLobbyJoined = true;
+
       this.socket.emit('requestUserList');
       console.log(this.user);
     }
@@ -94,13 +85,6 @@ export class GameLobbyPage {
     })
   }
 
-  private receiveClientList() {
-    return new Observable(observer => {
-      this.socket.on('receiveUserList', (data) => {
-        observer.next(data);
-      })
-    });
-  }
 
   private usersChanged() {
     let observable = new Observable(observer => {
@@ -147,12 +131,4 @@ export class GameLobbyPage {
     this.navCtrl.setRoot('JoinSessionPage');
   }
 
-  private onUpdateUser() {
-    return new Observable(observer => {
-      this.socket.on('updateUser', (data) => {
-
-        observer.next(data);
-      })
-    })
-  }
 }

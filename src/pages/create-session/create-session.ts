@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
@@ -20,7 +20,7 @@ export class CreateSessionPage {
   private events = [];
 
 
-  get room(){
+  get room() {
     return Settings.room
   }
 
@@ -28,7 +28,7 @@ export class CreateSessionPage {
     Settings.room = name;
   }
 
-  get selectedCategories(){
+  get selectedCategories() {
     return Settings.selectedCategories;
   }
 
@@ -36,7 +36,7 @@ export class CreateSessionPage {
     return Settings.user;
   }
 
-  constructor(private toastCtrl: ToastController,private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
+  constructor(private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
   }
 
   chooseCategories() {
@@ -68,21 +68,10 @@ export class CreateSessionPage {
   }
 
   ionViewWillEnter() {
-    if(!this.user.name){
-
-        this.socket.emit('requestAvatarList');
-        this.socket.on('receiveAvatarList', (data) => {
-          let avatarFileNames = data.avatarFileNames;
-          if (avatarFileNames) {
-            Settings.avatarFileNames = avatarFileNames;
-            //init random user
-            Settings.initRandomUser(this.socket);
-          }
-        })
+    if (!this.user.name || !this.user.avatar) {
+      Settings.initRandomUser(this.socket);
+      Settings.listenForUserChanges;
     }
-
-
-
   }
 
   ionViewDidEnter() {
@@ -100,7 +89,11 @@ export class CreateSessionPage {
   }
 
   createRoomRequest() {
-    this.socket.emit('createRoomRequest', {user: this.user, room: this.room, settings: { categories: this.selectedCategories}});
+    this.socket.emit('createRoomRequest', {
+      user: this.user,
+      room: this.room,
+      settings: {categories: this.selectedCategories}
+    });
   }
 
   onRoomCreated() {
@@ -129,17 +122,14 @@ export class CreateSessionPage {
       this.navCtrl.setRoot('GameLobbyPage');
     })
 
-    let updateUserEvent = this.onUpdateUser().subscribe((data) => {
-      console.log("updating user: " + data['user']);
-      Settings.updateUser(data['user']);
-    })
 
     let roomAlreadyExistsEvent = this.onRoomAlreadyExists().subscribe((data) => {
       this.showToast("Room already exists!");
     });
 
-    this.events.push(roomCreatedEvent, roomAlreadyExistsEvent, updateUserEvent);
+    this.events.push(roomCreatedEvent, roomAlreadyExistsEvent);
   }
+
   private showToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
@@ -148,11 +138,4 @@ export class CreateSessionPage {
     toast.present();
   }
 
-  private onUpdateUser() {
-    return new Observable(observer => {
-      this.socket.on('updateUser', (data) => {
-        observer.next(data);
-      })
-    })
-  }
 }
