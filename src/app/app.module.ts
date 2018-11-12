@@ -3,23 +3,34 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import {TabsModule} from "../pages/tabs/tabs.module";
+import {UserPageModule} from "../pages/user/user.module";
+import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
+import {ChooseAvatarPageModule} from "../pages/popover/choose-avatar.module";
+
+//const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
+const config: SocketIoConfig = { url: 'localhost:3001', options: {}};
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    SocketIoModule.forRoot(config),
+    TabsModule,
+    UserPageModule,
+    JoinSessionPageModule,
+    ChooseAvatarPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,
