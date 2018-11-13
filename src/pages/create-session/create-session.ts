@@ -31,7 +31,16 @@ export class CreateSessionPage {
   get selectedCategories() {
     return Settings.selectedCategories;
   }
+  get selectedThemes() {
+    return Settings.selectedThemes;
+  }
 
+  get cardsPerGame() {
+    return Settings.cardsPerGame;
+  }
+  set cardsPerGame(count) {
+    Settings.cardsPerGame = count;
+  }
   get user() {
     return Settings.user;
   }
@@ -54,11 +63,37 @@ export class CreateSessionPage {
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Okay',
-      handler: (data: any) => {
+      handler: () => {
         let i = 0;
         for (let box of alert.data.inputs) {
 
           Settings.categories[i].enabled = box.checked;
+          i++;
+        }
+      }
+    });
+
+    alert.present();
+  }
+  chooseThemes(){
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Choose the Themes for your cards');
+
+    for (let theme of Settings.themes) {
+      alert.addInput({
+        type: 'checkbox',
+        label: theme.name,
+        value: "",
+        checked: theme.enabled
+      });
+    }
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Okay',
+      handler: () => {
+        let i = 0;
+        for (let box of alert.data.inputs) {
+          Settings.themes[i].enabled = box.checked;
           i++;
         }
       }

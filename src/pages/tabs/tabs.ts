@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, Tabs} from 'ionic-angular';
 import {GamePage} from "../game/game";
 import {GameLobbyPage} from "../game-lobby/game-lobby";
+import {Settings} from "../settings";
 
 /**
  * Generated class for the JoinOrCreatePage tabs.
@@ -28,7 +29,7 @@ export class TabsPage {
 
 
   get isGameStarted() {
-    return GamePage.isGameStarted;
+    return Settings.game.isGameStarted;
   }
 
   get isLobbyJoined() {

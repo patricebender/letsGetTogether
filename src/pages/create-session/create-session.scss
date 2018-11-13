@@ -1,3 +1,6 @@
 page-create-session {
-
+  .noLineBreak {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

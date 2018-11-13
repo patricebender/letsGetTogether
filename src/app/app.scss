@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -23,11 +22,48 @@
   height: 100%;
 }
 
-
 .rounded {
   border-radius: 10px;
 }
 
+.roundedSmall {
+  border-radius: 20px;
+  padding: 2px;
+}
+
 .solidBorder {
-  border: solid 1px #007aff;
+  border: solid 1px color($colors, lightBlue);
+}
+
+.solidBorderBottom {
+  border-bottom: solid 1px color($colors, lightBlue);
+}
+
+.lightForeground {
+  background-color: #7D98C1;
+}
+
+.fadingDarkBackground {
+  animation: color-transition 40s infinite;
+}
+
+.darkBlue {
+  background-color: color($colors, darkBlue);
+}
+
+.lightBlue {
+  background-color: color($colors, lightBlue);
+}
+
+@keyframes color-transition {
+  0% {
+    background-color: #76A6AA;
+  }
+  50% {
+    background-color: #217482;
+  }
+  100% {
+    background-color: #76A6AA;
+  }
+
 }

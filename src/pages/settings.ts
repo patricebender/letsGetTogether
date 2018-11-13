@@ -1,6 +1,10 @@
-import {Socket, SocketIoModule} from "ng-socket-io";
+import {Socket} from "ng-socket-io";
+import {NavController} from "ionic-angular";
 
 export class Settings {
+
+  constructor(private navCtrl: NavController) {
+  }
 
   static user = {
     name: '',
@@ -19,8 +23,13 @@ export class Settings {
     otherUsers: []
   }
 
+  static cardsPerGame = 25;
+
   static categories = [{
     name: "Survey",
+    enabled: true
+  },{
+    name: "Action",
     enabled: true
   },
     {
@@ -40,8 +49,45 @@ export class Settings {
       name: "Outdoor",
       enabled: false
     }
-
   ]
+  static get selectedCategories() {
+    return Settings.categories.filter((category) => {
+      return category.enabled;
+    })
+  }
+
+
+
+  static themes = [
+    {
+      name: "Bullshit",
+      enabled: true
+    },
+    {
+      name: "Computer Science",
+      enabled: true
+    },
+    {
+      name: "Intimate",
+      enabled: true
+    },
+    {
+    name: "Sport",
+    enabled: true
+    },
+    {
+      name: "Politics",
+      enabled: false
+    }
+  ]
+
+  static get selectedThemes() {
+    return Settings.themes.filter((theme) => {
+      return theme.enabled;
+    })
+  }
+
+
 
   static randomNames = [
     'Peter Punsch',
@@ -59,11 +105,8 @@ export class Settings {
   ]
 
 
-  static get selectedCategories() {
-    return Settings.categories.filter((category) => {
-      return category.enabled;
-    })
-  }
+
+
 
 
   static room = ''
