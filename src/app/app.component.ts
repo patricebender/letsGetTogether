@@ -3,13 +3,13 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import {UserPage} from "../pages/user/user";
-import {Settings} from "../pages/settings";
+import {JoinSessionPage} from "../pages/join-session/join-session";
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = UserPage;
+  rootPage:any = JoinSessionPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

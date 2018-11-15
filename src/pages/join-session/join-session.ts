@@ -104,7 +104,7 @@ export class JoinSessionPage {
   }
 
   goToUserSettings() {
-    this.navCtrl.setRoot('UserPage');
+    this.navCtrl.push('UserPage');
   }
 
   private showToast(msg) {

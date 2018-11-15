@@ -164,6 +164,9 @@ export class CreateSessionPage {
 
     this.events.push(roomCreatedEvent, roomAlreadyExistsEvent);
   }
+  goToUserSettings() {
+    this.navCtrl.push('UserPage')
+  }
 
   private showToast(msg) {
     let toast = this.toastCtrl.create({
