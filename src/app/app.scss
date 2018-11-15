@@ -39,14 +39,6 @@
   border-bottom: solid 1px color($colors, lightBlue);
 }
 
-.lightForeground {
-  background-color: #7D98C1;
-}
-
-.fadingDarkBackground {
-  animation: color-transition 40s infinite;
-}
-
 .darkBlue {
   background-color: color($colors, darkBlue);
 }

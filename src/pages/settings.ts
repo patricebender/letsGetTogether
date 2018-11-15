@@ -101,12 +101,9 @@ export class Settings {
     'Valerie Vodka',
     'Marta Mule',
     'Juicy Julian',
-    'Boozy Bubbles'
+    'Boozy Bubbles',
+    'Drunk Diana',
   ]
-
-
-
-
 
 
   static room = ''
