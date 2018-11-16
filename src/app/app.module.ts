@@ -13,8 +13,8 @@ import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
 import {ChooseAvatarPageModule} from "../pages/popover/choose-avatar.module";
 
 
-//const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
-const config: SocketIoConfig = { url: 'localhost:3001', options: {}};
+const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
+//const config: SocketIoConfig = { url: 'localhost:3001', options: {}};
 //const config: SocketIoConfig = { url: 'http://10.94.111.184:3001', options: {}};
 
 @NgModule({

@@ -42,18 +42,48 @@ $colors: (
   darkGreen: #045D56
 );
 
-
+/* Popover */
 $popover-ios-background: color($colors, cardColor);
+$popover-md-background: color($colors, cardColor);
+$popover-wp-background: color($colors, cardColor);
 
+/* End Popover */
+
+/* Toolbar */
 $toolbar-background: darken(color($colors, dark), 5%);
+/* End Toolbar */
 
 
+/* Alert */
 $alert-ios-background: color($colors, cardColor);
+$alert-md-background: color($colors, cardColor);
+$alert-wp-background: color($colors, cardColor);
+
 $alert-ios-checkbox-background-color-on: color($colors, accentGreen);
+$alert-md-checkbox-background-color-on: color($colors, accentGreen);
+$alert-wp-checkbox-background-color-on: color($colors, accentGreen);
+
 $alert-ios-checkbox-border-color-on: color($colors, cardColor);
+$alert-md-checkbox-border-color-on: color($colors, cardColor);
+$alert-wp-checkbox-border-color-on: color($colors, cardColor);
+
 $alert-ios-button-text-color: color($colors, accentGreen);
+$alert-md-button-text-color: color($colors, accentGreen);
+$alert-wp-button-text-color: color($colors, accentGreen);
+
 $alert-ios-checkbox-label-text-color: darken(white, 20%);
+$alert-wp-checkbox-label-text-color: darken(white, 20%);
+$alert-md-checkbox-label-text-color: darken(white, 20%);
+
+$alert-wp-checkbox-label-text-color-checked: darken(white, 20%);
+$alert-md-checkbox-label-text-color-checked: darken(white, 20%);
 $alert-ios-checkbox-label-text-color-checked: darken(white, 20%);
+
+$alert-ios-button-background-color-activated: lighten(color($colors, cardColor), 10%);
+$alert-md-button-background-color-activated: lighten(color($colors, cardColor), 10%);
+$alert-wp-button-background-color-activated: lighten(color($colors, cardColor), 10%);
+
+/* Alert End */
 
 /* List */
 $list-border-color:  color($colors, accentGreen);
@@ -64,44 +94,57 @@ $list-md-activated-background-color: lighten(color($colors, cardColor), 10%);
 $list-wp-activated-background-color: lighten(color($colors, cardColor), 10%);
 /* End List */
 
-
+/* Text */
 $text-color: darken(white, 10%);
+/* End Text */
 
 /* List header */
-$list-ios-header-color: lightgray;
-$list-md-header-color: lightgray;
-$list-wp-header-color: lightgray;
+$list-ios-header-color: darken(white, 30%);;
+$list-md-header-color: darken(white, 30%);;
+$list-wp-header-color: darken(white, 30%);;
 /* end header */
 
 
 /* Paragraph */
 $item-ios-paragraph-text-color:  darken(white, 30%);
-$item-md-paragraph-text-color: color($colors, lightBlue);
-$item-wp-paragraph-text-color: color($colors, lightBlue);
+$item-md-paragraph-text-color:  darken(white, 30%);
+$item-wp-paragraph-text-color:  darken(white, 30%);
 
 $item-ios-paragraph-font-size: 1.2rem;
+$item-md-paragraph-font-size: 1.2rem;
+$item-wp-paragraph-font-size: 1.2rem;
+
 /* end paragraph */
 
 
 /* Range slider */
 $range-ios-knob-background-color: color($colors, darkGreen);
+$range-wp-knob-background-color: color($colors, darkGreen);
+$range-md-knob-background-color: color($colors, darkGreen);
+
 $range-ios-bar-active-background-color: color($colors, accentGreen);
+$range-wp-bar-active-background-color: color($colors, accentGreen);
+$range-md-bar-active-background-color: color($colors, accentGreen);
+
 $range-ios-bar-height: 3px;
+$range-md-bar-height: 3px;
+$range-wp-bar-height: 3px;
 
 /* end Range slider */
 
 /* Badge */
 $badge-ios-background-color: color($colors, darkGreen);
+$badge-md-background-color: color($colors, darkGreen);
+$badge-wp-background-color: color($colors, darkGreen);
+/* End Badge */
+
 
 /* Font stylezzz */
 $font-family-md-base: "Avenir";
 $font-family-ios-base: "Avenir";
 $font-family-wp-base: "Avenir";
-
 /* Font style end */
 
-
-/* End Badge */
 
 //$background-color: #5D5B87;
 
