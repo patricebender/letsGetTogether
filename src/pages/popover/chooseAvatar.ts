@@ -5,9 +5,8 @@ import {Settings} from "../settings";
 @Component({
   template: `
     <ion-list>
-      <ion-list-header>Ionic</ion-list-header>
-      <button ion-item *ngFor="let avatar of avatarFileNames" (click)="closeAndChooseAvatar(avatar)">
-        <ion-avatar>
+      <button  ion-item *ngFor="let avatar of avatarFileNames" (click)="closeAndChooseAvatar(avatar)">
+        <ion-avatar >
           <img src="../../assets/avatar/{{avatar}}">
         </ion-avatar>
       </button>

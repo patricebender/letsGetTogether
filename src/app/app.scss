@@ -23,7 +23,12 @@
 }
 
 .rounded {
-  border-radius: 10px;
+  border-radius: 30px;
+}
+
+.roundedIcon {
+  border-radius: 5px;
+  padding: 1px;
 }
 
 .roundedSmall {
@@ -32,19 +37,15 @@
 }
 
 .solidBorder {
-  border: solid 1px color($colors, lightBlue);
+  border: solid 1px color($colors, accentGreen);
 }
 
 .solidBorderBottom {
-  border-bottom: solid 1px color($colors, lightBlue);
+  border-bottom: solid 1px color($colors, accentGreen);
 }
 
-.darkBlue {
-  background-color: color($colors, darkBlue);
-}
-
-.lightBlue {
-  background-color: color($colors, lightBlue);
+.darkBackground {
+  background-color: color($colors, dark);
 }
 
 @keyframes color-transition {

@@ -32,46 +32,76 @@ $colors: (
   secondary: #32db64,
   danger: #f53d3d,
   light: #f4f4f4,
-  dark: #222,
   background: #76A6AA,
   darkBlue: #217482,
   lightBlue: #6687B4,
   sunRiseRed: #FEBB57,
-  cardColor: #5F98CA
+  cardColor: #373740,
+  dark: #424250,
+  accentGreen: #1EB980,
+  darkGreen: #045D56
 );
 
 
+$popover-ios-background: color($colors, cardColor);
 
-$toolbar-background: color($colors, lightBlue);
+$toolbar-background: darken(color($colors, dark), 5%);
+
+
+$alert-ios-background: color($colors, cardColor);
+$alert-ios-checkbox-background-color-on: color($colors, accentGreen);
+$alert-ios-checkbox-border-color-on: color($colors, cardColor);
+$alert-ios-button-text-color: color($colors, accentGreen);
+$alert-ios-checkbox-label-text-color: darken(white, 20%);
+$alert-ios-checkbox-label-text-color-checked: darken(white, 20%);
 
 /* List */
+$list-border-color:  color($colors, accentGreen);
 $list-background-color: color($colors, cardColor);
-$list-ios-activated-background-color: color($colors, lightBlue);
-$list-md-activated-background-color: color($colors, lightBlue);
-$list-wp-activated-background-color: color($colors, lightBlue);
+
+$list-ios-activated-background-color: lighten(color($colors, cardColor), 10%);
+$list-md-activated-background-color: lighten(color($colors, cardColor), 10%);
+$list-wp-activated-background-color: lighten(color($colors, cardColor), 10%);
 /* End List */
 
-$text-color: white;
+
+$text-color: darken(white, 10%);
 
 /* List header */
-$list-ios-header-color: white;
-$list-md-header-color: white;
-$list-wp-header-color: white;
+$list-ios-header-color: lightgray;
+$list-md-header-color: lightgray;
+$list-wp-header-color: lightgray;
 /* end header */
 
 
 /* Paragraph */
-$item-ios-paragraph-text-color: color($colors,darkBlue);
+$item-ios-paragraph-text-color:  darken(white, 30%);
 $item-md-paragraph-text-color: color($colors, lightBlue);
 $item-wp-paragraph-text-color: color($colors, lightBlue);
+
+$item-ios-paragraph-font-size: 1.2rem;
 /* end paragraph */
 
 
 /* Range slider */
-$range-ios-knob-background-color: color($colors, lightBlue);
+$range-ios-knob-background-color: color($colors, darkGreen);
+$range-ios-bar-active-background-color: color($colors, accentGreen);
 $range-ios-bar-height: 3px;
 
 /* end Range slider */
+
+/* Badge */
+$badge-ios-background-color: color($colors, darkGreen);
+
+/* Font stylezzz */
+$font-family-md-base: "Avenir";
+$font-family-ios-base: "Avenir";
+$font-family-wp-base: "Avenir";
+
+/* Font style end */
+
+
+/* End Badge */
 
 //$background-color: #5D5B87;
 

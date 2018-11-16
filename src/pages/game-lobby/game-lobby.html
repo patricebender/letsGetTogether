@@ -14,12 +14,12 @@
 </ion-header>
 
 
-<ion-content class="lightBlue" padding>
+<ion-content class="darkBackground" padding>
 
 
   <ion-list>
     <ion-item margin-bottom class="rounded" no-lines *ngFor="let user of otherUsers">
-      <ion-avatar class="solidBorder roundedSmall" item-start><img src="../../assets/avatar/{{user.avatar}}">
+      <ion-avatar class="roundedSmall" item-start><img src="../../assets/avatar/{{user.avatar}}">
       </ion-avatar>
       <ion-label>{{user.name}}</ion-label>
       <ion-icon item-end *ngIf="user.isAdmin" name="ribbon"></ion-icon>
