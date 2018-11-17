@@ -15,6 +15,9 @@ export class Settings {
     sips: 0
   }
 
+
+
+
   static updateUser(user) {
     Settings.user = user;
   }
@@ -106,6 +109,13 @@ export class Settings {
     'Juicy Julian',
     'Boozy Bubbles',
     'Drunk Diana',
+    'Longdrink Lucy',
+    'Daiquiri Daniel',
+    'Tequila Torsten',
+    'Bier-git',
+    'Nina Niemalsnüchtern',
+    'Kahlua Kirsten'
+
   ]
 
 

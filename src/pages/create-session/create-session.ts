@@ -128,7 +128,7 @@ export class CreateSessionPage {
     this.socket.emit('createRoomRequest', {
       user: this.user,
       room: this.room,
-      settings: {categories: this.selectedCategories}
+      game: {categories: this.selectedCategories, themes: this.selectedThemes}
     });
   }
 
