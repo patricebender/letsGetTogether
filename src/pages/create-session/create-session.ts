@@ -4,6 +4,7 @@ import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 import {Device} from "@ionic-native/device";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the CreateSessionPage page.
@@ -155,7 +156,8 @@ export class CreateSessionPage {
 
   private registerEvents() {
     let roomCreatedEvent = this.onRoomCreated().subscribe((data) => {
-      this.navCtrl.setRoot('GameLobbyPage');
+      Settings.game.isGameStarted = true;
+      this.navCtrl.setRoot(TabsPage);
     })
 
 

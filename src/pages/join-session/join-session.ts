@@ -4,6 +4,7 @@ import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 import {Settings} from "../settings";
 import {Device} from "@ionic-native/device";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the JoinSessionPage page.
@@ -89,7 +90,8 @@ export class JoinSessionPage {
 
   private registerEvents() {
     let roomJoinEvent = this.onRoomFound().subscribe((data) => {
-      this.navCtrl.setRoot('GameLobbyPage');
+      Settings.game.isGameStarted = true;
+      this.navCtrl.setRoot(TabsPage);
     });
 
     let noSuchRoomEvent = this.onNoRoomFound().subscribe((data) => {

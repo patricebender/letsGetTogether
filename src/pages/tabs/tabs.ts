@@ -1,7 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, Tabs} from 'ionic-angular';
 import {GamePage} from "../game/game";
-import {GameLobbyPage} from "../game-lobby/game-lobby";
 import {Settings} from "../settings";
 
 /**
@@ -35,9 +34,6 @@ export class TabsPage {
     return Settings.game.isGameStarted;
   }
 
-  get isLobbyJoined() {
-    return GameLobbyPage.isLobbyJoined;
-  }
   constructor(public navCtrl: NavController) {
   }
 

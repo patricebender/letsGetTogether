@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Settings} from "../settings";
+import {Socket} from "ng-socket-io";
 
 /**
  * Generated class for the PlayerOverviewPage page.
@@ -16,7 +17,10 @@ import {Settings} from "../settings";
 })
 export class PlayerOverviewPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public socket:Socket, private navCtrl: NavController, public navParams: NavParams) {
+    Settings.subscribeUserList(this.socket);
+    Settings.subscribeToAdminPromotion(this.socket);
+    this.socket.emit('requestUserList');
   }
 
 
