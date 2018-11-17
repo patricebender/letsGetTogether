@@ -3,6 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams, ToastController} f
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
+import {Device} from "@ionic-native/device";
 
 /**
  * Generated class for the CreateSessionPage page.
@@ -45,7 +46,7 @@ export class CreateSessionPage {
     return Settings.user;
   }
 
-  constructor(private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
+  constructor(private device: Device,private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
   }
 
   chooseCategories() {
@@ -104,7 +105,7 @@ export class CreateSessionPage {
 
   ionViewWillEnter() {
     if (!this.user.name || !this.user.avatar) {
-      Settings.initRandomUser(this.socket);
+      Settings.initRandomUser(this.socket, this.device);
       Settings.listenForUserChanges;
     }
   }

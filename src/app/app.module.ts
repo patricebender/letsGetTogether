@@ -4,13 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
+import {Device} from "@ionic-native/device";
 
 
 import { MyApp } from './app.component';
 import {TabsModule} from "../pages/tabs/tabs.module";
 import {UserPageModule} from "../pages/user/user.module";
 import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
-import {ChooseAvatarPageModule} from "../pages/popover/choose-avatar.module";
+import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avatar.module";
 
 
 const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
@@ -35,6 +36,7 @@ const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};
     MyApp
   ],
   providers: [
+    Device,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

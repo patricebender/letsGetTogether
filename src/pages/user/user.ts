@@ -5,7 +5,8 @@ import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 import {DomSanitizer} from "@angular/platform-browser";
-import {ChooseAvatarPage} from "../popover/chooseAvatar";
+import {ChooseAvatarPage} from "../popover/chooseAvatar/chooseAvatar";
+import {Device} from '@ionic-native/device';
 
 
 /**
@@ -23,7 +24,7 @@ import {ChooseAvatarPage} from "../popover/chooseAvatar";
 export class UserPage {
 
 
-  constructor(private sanitizer: DomSanitizer, public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private popoverCtrl: PopoverController) {
+  constructor(private device: Device,public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private popoverCtrl: PopoverController) {
     Settings.listenForUserChanges(this.socket);
   }
 
@@ -51,7 +52,7 @@ export class UserPage {
   }
 
   ionViewWillEnter() {
-    Settings.initRandomUser(this.socket);
+    Settings.initRandomUser(this.socket, this.device);
 
   }
 

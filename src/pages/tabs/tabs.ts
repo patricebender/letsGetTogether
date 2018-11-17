@@ -19,6 +19,9 @@ import {Settings} from "../settings";
 export class TabsPage {
 
   gameRoot = 'GamePage'
+  playerOverviewRoot = 'PlayerOverviewPage';
+  gameOverviewRoot = 'GameOverviewPage'
+
   @ViewChild('myTabs') tabRef: Tabs;
 
 

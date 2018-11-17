@@ -1,6 +1,6 @@
 import {ViewController} from "ionic-angular";
 import {Component} from "@angular/core";
-import {Settings} from "../settings";
+import {Settings} from "../../settings";
 
 @Component({
   template: `

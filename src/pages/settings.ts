@@ -1,5 +1,6 @@
 import {Socket} from "ng-socket-io";
 import {NavController} from "ionic-angular";
+import {Device} from "@ionic-native/device";
 
 export class Settings {
 
@@ -8,8 +9,10 @@ export class Settings {
 
   static user = {
     name: '',
+    uuid: undefined,
     isAdmin: false,
-    avatar: ''
+    avatar: '',
+    sips: 0
   }
 
   static updateUser(user) {
@@ -109,7 +112,14 @@ export class Settings {
   static room = ''
 
 
-  static initRandomUser(socket: Socket) {
+  static initRandomUser(socket: Socket, device: Device) {
+
+
+
+    if(!Settings.user.uuid){
+      Settings.user.uuid = device.uuid;
+    }
+
     if (Settings.avatarFileNames.length === 0) {
       socket.emit('requestAvatarList');
       socket.on('receiveAvatarList', (data) => {

@@ -53,6 +53,12 @@ $popover-wp-background: color($colors, cardColor);
 $toolbar-background: darken(color($colors, dark), 5%);
 /* End Toolbar */
 
+/* Tabs */
+$tabs-background:  color($colors, cardColor);
+$tabs-ios-tab-icon-color: color($colors, accentGreen);
+$tabs-ios-tab-icon-color-active: color($colors, accentGreen);
+/* End Tabs */
+
 
 /* Alert */
 $alert-ios-background: color($colors, cardColor);

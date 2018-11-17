@@ -3,6 +3,7 @@ import {AlertController, IonicPage, NavController, ToastController} from 'ionic-
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 import {Settings} from "../settings";
+import {Device} from "@ionic-native/device";
 
 /**
  * Generated class for the JoinSessionPage page.
@@ -22,8 +23,8 @@ export class JoinSessionPage {
   events = [];
 
 
-  constructor(public toastCtrl: ToastController, public navCtrl: NavController, private socket: Socket, public alertCtrl: AlertController) {
-
+  constructor(private device: Device, public toastCtrl: ToastController, public navCtrl: NavController, private socket: Socket, public alertCtrl: AlertController) {
+  console.log(this.device.platform)
   }
 
 
@@ -50,7 +51,7 @@ export class JoinSessionPage {
     Settings.listenForUserChanges(this.socket);
 
     if (!this.user.name || !this.user.avatar) {
-      Settings.initRandomUser(this.socket);
+      Settings.initRandomUser(this.socket, this.device);
       Settings.listenForUserChanges;
     }
   }
