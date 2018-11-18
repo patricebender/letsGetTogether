@@ -16,25 +16,17 @@ export class Settings {
   }
 
 
-
-
   static updateUser(user) {
     Settings.user = user;
   }
 
   static avatarFileNames = [];
 
-  static game = {
-    isGameStarted: false,
-    otherUsers: []
-  }
-
-  static cardsPerGame = 25;
 
   static categories = [{
     name: "Survey",
     enabled: true
-  },{
+  }, {
     name: "Action",
     enabled: true
   },
@@ -56,12 +48,12 @@ export class Settings {
       enabled: false
     }
   ]
+
   static get selectedCategories() {
     return Settings.categories.filter((category) => {
       return category.enabled;
     })
   }
-
 
 
   static themes = [
@@ -78,8 +70,8 @@ export class Settings {
       enabled: true
     },
     {
-    name: "Sport",
-    enabled: true
+      name: "Sport",
+      enabled: true
     },
     {
       name: "Politics",
@@ -92,7 +84,6 @@ export class Settings {
       return theme.enabled;
     })
   }
-
 
 
   static randomNames = [
@@ -125,8 +116,7 @@ export class Settings {
   static initRandomUser(socket: Socket, device: Device) {
 
 
-
-    if(!Settings.user.uuid){
+    if (!Settings.user.uuid) {
       Settings.user.uuid = device.uuid;
     }
 
@@ -166,7 +156,7 @@ export class Settings {
     if (!Settings.isUserListSubscribed) {
       socket.on('receiveUserList', (data) => {
         console.log("update userList" + data.userList);
-        Settings.game.otherUsers = data.userList;
+        Settings.game.players = data.userList;
       });
     }
     Settings.isUserListSubscribed = true;
@@ -185,12 +175,38 @@ export class Settings {
     Settings.isListeningForAdminPromotion = true;
   }
 
+  static isListeningForGameUpdates = false;
+  static listenForGameUpdates(socket: Socket) {
+
+    //only listen if not subscribed
+    if (!Settings.isListeningForGameUpdates) {
+      socket.on('gameUpdate', (data) => {
+        console.log("received game: " + data['game'])
+        Settings.game = data['game'];
+      })
+    }
+    Settings.isListeningForGameUpdates = true;
+  }
+
   static setRandomAvatar() {
     Settings.user.avatar = Settings.avatarFileNames[Math.floor(Math.random() * Settings.avatarFileNames.length)];
   }
 
   static setRandomName() {
     Settings.user.name = Settings.randomNames[Math.floor(Math.random() * Settings.randomNames.length)];
+  }
+
+
+  static isGameStarted = false;
+
+
+  static game = {
+    players: [],
+    admin: {},
+    categories: [],
+    themes: [],
+    cardsPerGame: 0,
+    currentCard: {}
   }
 
 
