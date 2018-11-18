@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Settings} from "../settings";
 
 /**
  * Generated class for the GameOverviewPage page.
@@ -15,11 +16,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class GameOverviewPage {
 
+  @ViewChild(Content) content: Content;
+
+  get user() {
+    return Settings.user;
+  }
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad GameOverviewPage');
+  }
+
+  ionViewDidEnter() {
+    if (!this.user.name) {
+      this.navCtrl.setRoot('JoinSessionPage');
+    }
   }
 
 }

@@ -191,7 +191,6 @@ export class Settings {
 
   static setRandomName() {
     Settings.user.name = Settings.randomNames[Math.floor(Math.random() * Settings.randomNames.length)];
-
   }
 
 

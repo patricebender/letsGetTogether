@@ -12,6 +12,7 @@ import {TabsModule} from "../pages/tabs/tabs.module";
 import {UserPageModule} from "../pages/user/user.module";
 import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
 import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avatar.module";
+import {ComponentsModule} from "../components/components.module";
 
 
 const config: SocketIoConfig = { url: 'http://192.168.2.102:3001', options: {}};

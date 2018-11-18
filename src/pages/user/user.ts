@@ -1,10 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
-import {JoinSessionPage} from "../join-session/join-session";
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
-import {Observable} from "rxjs";
-import {DomSanitizer} from "@angular/platform-browser";
 import {ChooseAvatarPage} from "../popover/chooseAvatar/chooseAvatar";
 import {Device} from '@ionic-native/device';
 
@@ -24,6 +21,8 @@ import {Device} from '@ionic-native/device';
 export class UserPage {
 
 
+  newName: string;
+
   constructor(private device: Device,public navCtrl: NavController, public navParams: NavParams, private socket: Socket, private popoverCtrl: PopoverController) {
     Settings.listenForUserChanges(this.socket);
   }
@@ -35,10 +34,12 @@ export class UserPage {
   }
 
   set avatar(fileName) {
+    this.socket.emit('avatarChanged', {newAvatar: fileName});
     Settings.user.avatar = fileName;
   }
 
   set userName(name) {
+    console.log(name)
     Settings.user.name = name;
   }
 
@@ -56,9 +57,6 @@ export class UserPage {
 
   }
 
-  saveAndContinue() {
-    this.navCtrl.setRoot(JoinSessionPage);
-  }
 
   presentAvatarPopover() {
     let popover = this.popoverCtrl.create(ChooseAvatarPage);
@@ -66,5 +64,10 @@ export class UserPage {
   }
 
 
-
+  saveUserChanges() {
+    console.log(this.newName)
+    this.userName = this.newName;
+    //inform others that name has changed
+    this.socket.emit('userNameChanged', {newName: this.newName});
+  }
 }

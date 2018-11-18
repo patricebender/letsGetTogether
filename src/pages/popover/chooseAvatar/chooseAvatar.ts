@@ -1,6 +1,7 @@
 import {ViewController} from "ionic-angular";
 import {Component} from "@angular/core";
 import {Settings} from "../../settings";
+import {Socket} from "ng-socket-io";
 
 @Component({
   template: `
@@ -14,10 +15,12 @@ import {Settings} from "../../settings";
   `
 })
 export class ChooseAvatarPage {
-  constructor(public viewCtrl: ViewController) {
+  constructor(public viewCtrl: ViewController, private socket: Socket) {
   }
 
   closeAndChooseAvatar(avatarFile) {
+
+    this.socket.emit('avatarChanged', {newAvatar: avatarFile});
     Settings.user.avatar = avatarFile;
     this.viewCtrl.dismiss();
   }
