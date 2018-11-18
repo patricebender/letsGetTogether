@@ -33,8 +33,12 @@ export class PlayerOverviewPage {
     return Settings.user;
   }
 
-  get otherUsers() {
-    return Settings.game.otherUsers;
+  get players() {
+    return Settings.game.players;
+  }
+
+  get game() {
+    return Settings.game;
   }
 
   ionViewDidLoad() {

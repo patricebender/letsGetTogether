@@ -33,21 +33,24 @@ export class CreateSessionPage {
   get selectedCategories() {
     return Settings.selectedCategories;
   }
+
   get selectedThemes() {
     return Settings.selectedThemes;
   }
 
   get cardsPerGame() {
-    return Settings.cardsPerGame;
+    return Settings.game.cardsPerGame;
   }
+
   set cardsPerGame(count) {
-    Settings.cardsPerGame = count;
+    Settings.game.cardsPerGame = count;
   }
+
   get user() {
     return Settings.user;
   }
 
-  constructor(private device: Device,private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
+  constructor(private device: Device, private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
   }
 
   chooseCategories() {
@@ -77,7 +80,8 @@ export class CreateSessionPage {
 
     alert.present();
   }
-  chooseThemes(){
+
+  chooseThemes() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Choose the Themes for your cards');
 
@@ -129,7 +133,9 @@ export class CreateSessionPage {
     this.socket.emit('createRoomRequest', {
       user: this.user,
       room: this.room,
-      game: {categories: this.selectedCategories, themes: this.selectedThemes}
+      categories: this.selectedCategories,
+      themes: this.selectedThemes,
+      cardsPerGame: this.cardsPerGame,
     });
   }
 
@@ -156,7 +162,9 @@ export class CreateSessionPage {
 
   private registerEvents() {
     let roomCreatedEvent = this.onRoomCreated().subscribe((data) => {
-      Settings.game.isGameStarted = true;
+      Settings.isGameStarted = true;
+      Settings.game = data['game'];
+
       this.navCtrl.setRoot(TabsPage);
     })
 
@@ -167,6 +175,7 @@ export class CreateSessionPage {
 
     this.events.push(roomCreatedEvent, roomAlreadyExistsEvent);
   }
+
   goToUserSettings() {
     this.navCtrl.push('UserPage')
   }

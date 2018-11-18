@@ -90,7 +90,8 @@ export class JoinSessionPage {
 
   private registerEvents() {
     let roomJoinEvent = this.onRoomFound().subscribe((data) => {
-      Settings.game.isGameStarted = true;
+      Settings.isGameStarted = true;
+      Settings.game = data['game'];
       this.navCtrl.setRoot(TabsPage);
     });
 

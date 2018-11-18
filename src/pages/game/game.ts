@@ -21,6 +21,9 @@ export class GamePage {
     return Settings.game.isGameStarted;
   }
 
+  get game() {
+    return Settings.game;
+  }
 
 
   get user() {
