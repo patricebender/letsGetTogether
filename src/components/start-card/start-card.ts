@@ -19,10 +19,10 @@ export class StartCardComponent {
   }
 
   constructor(private socket: Socket) {
-
   }
 
   startGame() {
+      Settings.waitForCardResponse = false;
       this.socket.emit('newCardRequest');
   }
 }

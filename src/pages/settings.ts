@@ -12,8 +12,12 @@ export class Settings {
     uuid: undefined,
     isAdmin: false,
     avatar: '',
+    // for surveys etc where we have to wait for others to complete actions before continuing
+    hasAnswered: false,
     sips: 0
   }
+
+  static waitForCardResponse = false;
 
 
   static updateUser(user) {
@@ -175,6 +179,7 @@ export class Settings {
     Settings.isListeningForAdminPromotion = true;
   }
 
+
   static isListeningForGameUpdates = false;
   static listenForGameUpdates(socket: Socket) {
 
@@ -187,6 +192,32 @@ export class Settings {
     }
     Settings.isListeningForGameUpdates = true;
   }
+
+  static isListeningForSurveys = false;
+  static listenForSurveys(socket: Socket) {
+    if(!Settings.isListeningForSurveys) {
+      socket.on('newSurvey', (data) => {
+        console.log("received survey: " + JSON.stringify( data['survey']));
+
+        Settings.waitForCardResponse = false;
+        Settings.game.currentCard = data['survey'];
+        Settings.game.currentCategory = 'survey';
+      })
+    }
+    Settings.isListeningForSurveys = true;
+  }
+
+  static isListeningForSurveyUpdates = false;
+  static listenForSurveyUpdates(socket: Socket) {
+    if(!Settings.isListeningForSurveyUpdates) {
+      socket.on('surveyUpdate', (data) => {
+        console.log("received survey update: " + JSON.stringify( data['survey']));
+        Settings.game.currentCard = data['survey'];
+      })
+    }
+    Settings.isListeningForSurveyUpdates = true;
+  }
+
 
   static setRandomAvatar() {
     Settings.user.avatar = Settings.avatarFileNames[Math.floor(Math.random() * Settings.avatarFileNames.length)];
