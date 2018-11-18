@@ -17,6 +17,10 @@ export class WaitForItComponent {
     return Settings.game;
   }
 
+  get user() {
+    return Settings.user;
+  }
+
 
   constructor() {
 

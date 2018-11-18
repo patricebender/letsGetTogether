@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Settings} from "../../pages/settings";
 
 /**
  * Generated class for the SurveyComponent component.
@@ -12,11 +13,14 @@ import { Component } from '@angular/core';
 })
 export class SurveyComponent {
 
-  text: string;
-
-  constructor() {
-    console.log('Hello SurveyComponent Component');
-    this.text = 'Hello World';
+  get survey(){
+    return Settings.game.currentCard;
   }
 
+  constructor() {
+  }
+
+  emitAnswer() {
+
+  }
 }

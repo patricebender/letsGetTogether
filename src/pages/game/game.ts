@@ -18,7 +18,7 @@ import {Settings} from "../settings";
 export class GamePage {
 
   get isGameStarted() {
-    return Settings.game.isGameStarted;
+    return Settings.isGameStarted;
   }
 
   get game() {
@@ -32,6 +32,10 @@ export class GamePage {
 
   get room() {
     return Settings.room;
+  }
+
+  get currentCardCategory(){
+    return Settings.game.currentCategory;
   }
 
 
@@ -50,7 +54,7 @@ export class GamePage {
   }
 
   exitGame() {
-    Settings.game.isGameStarted = false;
+    Settings.isGameStarted = false;
     this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
   }

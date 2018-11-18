@@ -28,20 +28,20 @@ export class Settings {
     enabled: true
   }, {
     name: "Action",
-    enabled: true
+    enabled: false
   },
     {
       name: "Curse",
-      enabled: true
+      enabled: false
     }, {
       name: "Duell",
-      enabled: true
+      enabled: false
     }, {
       name: "Quicktime",
-      enabled: true
+      enabled: false
     }, {
       name: "Quiz",
-      enabled: true
+      enabled: false
     },
     {
       name: "Outdoor",
@@ -205,8 +205,9 @@ export class Settings {
     admin: {},
     categories: [],
     themes: [],
-    cardsPerGame: 0,
-    currentCard: {}
+    cardsPerGame: 25,
+    currentCard: undefined,
+    currentCategory: 'none'
   }
 
 
