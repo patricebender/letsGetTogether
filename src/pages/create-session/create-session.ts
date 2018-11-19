@@ -84,6 +84,7 @@ export class CreateSessionPage {
   chooseThemes() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Choose the Themes for your cards');
+    alert.setCssClass('alert');
 
     for (let theme of Settings.themes) {
       alert.addInput({
@@ -136,6 +137,7 @@ export class CreateSessionPage {
       categories: this.selectedCategories,
       themes: this.selectedThemes,
       cardsPerGame: this.cardsPerGame,
+      cardsPlayed: 0
     });
   }
 

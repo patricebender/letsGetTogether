@@ -38,6 +38,10 @@ export class GamePage {
     return Settings.game.currentCategory;
   }
 
+  goToUserSettings() {
+    this.navCtrl.push('UserPage');
+  }
+
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
     Settings.listenForSurveys(socket);

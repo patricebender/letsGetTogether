@@ -14,7 +14,8 @@ export class Settings {
     avatar: '',
     // for surveys etc where we have to wait for others to complete actions before continuing
     hasAnswered: false,
-    sips: 0
+    sips: 0,
+    multiplier: 1
   }
 
   static waitForCardResponse = false;
@@ -237,8 +238,10 @@ export class Settings {
     categories: [],
     themes: [],
     cardsPerGame: 25,
+    cardsPlayed: 0,
     currentCard: undefined,
-    currentCategory: 'none'
+    currentCategory: 'none',
+    multiplier: 1
   }
 
 

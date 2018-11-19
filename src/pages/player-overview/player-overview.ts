@@ -45,8 +45,4 @@ export class PlayerOverviewPage {
     console.log('ionViewDidLoad PlayerOverviewPage');
   }
 
-  goToUserSettings() {
-    this.navCtrl.push('UserPage')
-  }
-
 }
