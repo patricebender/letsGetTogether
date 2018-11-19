@@ -17,9 +17,19 @@ export class SurveyComponent {
 
 
   userAnswer = '';
+  receivedResult = false;
+  losers = [];
 
   get waitingForResults() {
     return Settings.waitForCardResponse;
+  }
+
+  set waitingForResults(boolean) {
+    Settings.waitForCardResponse = false;
+  }
+
+  get user() {
+    return Settings.user;
   }
 
 
@@ -37,6 +47,8 @@ export class SurveyComponent {
     this.events.forEach((event) => {
       event.unsubscribe();
     })
+
+    console.log("LEAVING SURVEY VIEW")
   }
 
   emitAnswer(option) {
@@ -53,6 +65,9 @@ export class SurveyComponent {
       let survey = data['survey'];
       Settings.game.currentCard = survey;
       console.log("Received results for " + JSON.stringify(survey))
+      this.receivedResult = true;
+      this.waitingForResults = false;
+      this.losers = data['losers'];
     });
 
     this.events.push(waitForSurveyResults);
