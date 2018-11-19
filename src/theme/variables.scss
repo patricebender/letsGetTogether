@@ -28,7 +28,7 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary: #6687B4,
+  primary: #1EB980,
   secondary: #32db64,
   danger: #f53d3d,
   light: #f4f4f4,
@@ -41,6 +41,9 @@ $colors: (
   accentGreen: #1EB980,
   darkGreen: #045D56
 );
+
+
+$card-md-text-color: white;
 
 /* Popover */
 $popover-ios-background: color($colors, cardColor);
@@ -56,21 +59,23 @@ $toolbar-background: darken(color($colors, dark), 5%);
 /* Tabs */
 $tabs-background:  color($colors, cardColor);
 $tabs-ios-tab-icon-color: color($colors, accentGreen);
+$tabs-md-tab-icon-color: color($colors, accentGreen);
 $tabs-ios-tab-icon-color-active: color($colors, accentGreen);
+$tabs-md-tab-icon-color-active: color($colors, accentGreen);
+
 /* End Tabs */
 
 
 /* Alert */
 $alert-ios-background: color($colors, cardColor);
-$alert-md-background: color($colors, cardColor);
+$alert-md-background-color: color($colors, cardColor);
 $alert-wp-background: color($colors, cardColor);
 
 $alert-ios-checkbox-background-color-on: color($colors, accentGreen);
-$alert-md-checkbox-background-color-on: color($colors, accentGreen);
 $alert-wp-checkbox-background-color-on: color($colors, accentGreen);
 
 $alert-ios-checkbox-border-color-on: color($colors, cardColor);
-$alert-md-checkbox-border-color-on: color($colors, cardColor);
+$alert-md-checkbox-border-color-on: color($colors, darkGreen);
 $alert-wp-checkbox-border-color-on: color($colors, cardColor);
 
 $alert-ios-button-text-color: color($colors, accentGreen);
@@ -110,6 +115,10 @@ $list-md-header-color: darken(white, 30%);;
 $list-wp-header-color: darken(white, 30%);;
 /* end header */
 
+/* input */
+$text-input-md-show-focus-highlight: false;
+/* End input */
+
 
 /* Paragraph */
 $item-ios-paragraph-text-color:  darken(white, 30%);
@@ -127,6 +136,8 @@ $item-wp-paragraph-font-size: 1.2rem;
 $range-ios-knob-background-color: color($colors, darkGreen);
 $range-wp-knob-background-color: color($colors, darkGreen);
 $range-md-knob-background-color: color($colors, darkGreen);
+
+$range-md-knob-width: 30px;
 
 $range-ios-bar-active-background-color: color($colors, accentGreen);
 $range-wp-bar-active-background-color: color($colors, accentGreen);
