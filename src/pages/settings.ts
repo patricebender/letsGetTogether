@@ -7,18 +7,9 @@ export class Settings {
   constructor(private navCtrl: NavController) {
   }
 
-  static user = {
-    name: '',
-    uuid: undefined,
-    isAdmin: false,
-    avatar: '',
-    // for surveys etc where we have to wait for others to complete actions before continuing
-    hasAnswered: false,
-    sips: 0,
-    multiplier: 1
-  }
 
-  static waitForCardResponse = false;
+
+
 
 
   static updateUser(user) {
@@ -121,10 +112,6 @@ export class Settings {
   static initRandomUser(socket: Socket, device: Device) {
 
 
-    if (!Settings.user.uuid) {
-      Settings.user.uuid = device.uuid;
-    }
-
     if (Settings.avatarFileNames.length === 0) {
       socket.emit('requestAvatarList');
       socket.on('receiveAvatarList', (data) => {
@@ -201,6 +188,7 @@ export class Settings {
         console.log("received survey: " + JSON.stringify( data['survey']));
 
         Settings.waitForCardResponse = false;
+        Settings.receivedCardResponse = false;
         Settings.game.currentCard = data['survey'];
         Settings.game.currentCategory = 'survey';
       })
@@ -230,7 +218,8 @@ export class Settings {
 
 
   static isGameStarted = false;
-
+  static waitForCardResponse = false;
+  static receivedCardResponse = false;
 
   static game = {
     players: [],
@@ -241,6 +230,17 @@ export class Settings {
     cardsPlayed: 0,
     currentCard: undefined,
     currentCategory: 'none',
+    multiplier: 1
+  }
+
+  static user = {
+    name: '',
+    socketId: undefined,
+    isAdmin: false,
+    avatar: '',
+    // for surveys etc where we have to wait for others to complete actions before continuing
+    hasAnswered: false,
+    sips: 0,
     multiplier: 1
   }
 
