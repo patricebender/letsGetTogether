@@ -1,0 +1,14 @@
+survey {
+  .answerContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .answer {
+    flex: 1 0 40%;
+  }
+
+  .userChoice {
+    border-width: 5px;
+  }
+}
