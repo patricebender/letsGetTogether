@@ -1,0 +1,25 @@
+<!-- Generated template for the SurveyComponent component -->
+
+<ion-card class="rounded">
+  <ion-title  style="text-align: center" padding>
+    <div style="white-space: pre-line">"{{survey.question}}"</div>
+  </ion-title>
+
+
+  <ion-row class="answerContainer" padding justify-content-center>
+    <button  style="text-transform: none" [disabled]="waitingForResults || survey.closed" *ngFor="let option of survey.options" (click)="emitAnswer(option)" ion-button large color="cardColor"
+            class="solidBorder rounded answer" ngClass="{{userAnswer === option.title? 'userChoice' : ''}}">
+      <ion-label style="white-space: pre-line" padding-vertical>{{option.title}}  {{waitingForResults || survey.closed ? ' x' + option.voters.length  : ''}}</ion-label>
+    </button>
+  </ion-row>
+  <ion-row *ngIf="waitingForResults" padding justify-content-center>
+    <p padding-horizontal>Waiting for results</p>
+    <ion-spinner color="accentGreen"></ion-spinner>
+  </ion-row>
+  <ion-row *ngIf="receivedResult " padding justify-content-center>
+    <p padding-horizontal>{{losers.length > 0 ? 'Here are the losers: ' : 'Meh. No losers this time :/'}} </p>
+    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'YOU' : loser.name}} </div>
+  </ion-row>
+
+
+</ion-card>
