@@ -64,12 +64,4 @@ export class GamePage {
     this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
   }
-
-  private showToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 2000
-    });
-    toast.present();
-  }
 }
