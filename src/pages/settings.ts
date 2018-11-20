@@ -1,12 +1,16 @@
-import {Socket, SocketIoModule} from "ng-socket-io";
+import {Socket} from "ng-socket-io";
+import {NavController} from "ionic-angular";
+import {Device} from "@ionic-native/device";
 
 export class Settings {
 
-  static user = {
-    name: '',
-    isAdmin: false,
-    avatar: ''
+  constructor(private navCtrl: NavController) {
   }
+
+
+
+
+
 
   static updateUser(user) {
     Settings.user = user;
@@ -14,50 +18,32 @@ export class Settings {
 
   static avatarFileNames = [];
 
-  static game = {
-    isGameStarted: false,
-    otherUsers: []
-  }
 
   static categories = [{
     name: "Survey",
     enabled: true
+  }, {
+    name: "Action",
+    enabled: false
   },
     {
       name: "Curse",
-      enabled: true
+      enabled: false
     }, {
       name: "Duell",
-      enabled: true
+      enabled: false
     }, {
       name: "Quicktime",
-      enabled: true
+      enabled: false
     }, {
       name: "Quiz",
-      enabled: true
+      enabled: false
     },
     {
       name: "Outdoor",
       enabled: false
     }
-
   ]
-
-  static randomNames = [
-    'Peter Punsch',
-    'Ronald Rum',
-    'Angela Absinth',
-    'Ricky la Fleur',
-    'Lahey Liquor',
-    'Randy Burgers',
-    'Karl Kirschwasser',
-    'Gisela Gin-Fizz',
-    'Valerie Vodka',
-    'Marta Mule',
-    'Juicy Julian',
-    'Boozy Bubbles'
-  ]
-
 
   static get selectedCategories() {
     return Settings.categories.filter((category) => {
@@ -66,10 +52,72 @@ export class Settings {
   }
 
 
+  static themes = [
+    {
+      name: "Bullshit",
+      enabled: true
+    },
+    {
+      name: "Computer Science",
+      enabled: true
+    },
+    {
+      name: "Intimate",
+      enabled: true
+    },
+    {
+      name: "Sport",
+      enabled: true
+    },
+    {
+      name: "Politics",
+      enabled: false
+    }
+  ]
+
+  static get selectedThemes() {
+    return Settings.themes.filter((theme) => {
+      return theme.enabled;
+    })
+  }
+
+
+  static randomNames = [
+    'Ronald Rum',
+    'Angela Absinth',
+    'Ricky la Fleur',
+    'Lahey Liquor',
+    'Brandy Randy',
+    'Karl Kirschwasser',
+    'Gisela Gin-Fizz',
+    'Valerie Vodka',
+    'Marta Mule',
+    'Juicy Julian',
+    'Boozy Bubbles',
+    'Drunk Diana',
+    'Longdrink Lucy',
+    'Daiquiri Daniel',
+    'Tequila Torsten',
+    'Bier-git',
+    'Nina Niemalsnüchtern',
+    'Kahlua Kirsten',
+    'Martini Martin',
+    'Pils Petra',
+    'Export Erwin',
+    'Margarita Michel',
+    'Carla Cognac',
+    'Karl Korn',
+    'Portwein Peter',
+    'Naughty Norbert'
+  ]
+
+
   static room = ''
 
 
-  static initRandomUser(socket: Socket) {
+  static initRandomUser(socket: Socket, device: Device) {
+
+
     if (Settings.avatarFileNames.length === 0) {
       socket.emit('requestAvatarList');
       socket.on('receiveAvatarList', (data) => {
@@ -106,7 +154,7 @@ export class Settings {
     if (!Settings.isUserListSubscribed) {
       socket.on('receiveUserList', (data) => {
         console.log("update userList" + data.userList);
-        Settings.game.otherUsers = data.userList;
+        Settings.game.players = data.userList;
       });
     }
     Settings.isUserListSubscribed = true;
@@ -125,13 +173,81 @@ export class Settings {
     Settings.isListeningForAdminPromotion = true;
   }
 
+
+  static isListeningForGameUpdates = false;
+  static listenForGameUpdates(socket: Socket) {
+
+    //only listen if not subscribed
+    if (!Settings.isListeningForGameUpdates) {
+      socket.on('gameUpdate', (data) => {
+        console.log("received game: " + data['game'])
+        Settings.game = data['game'];
+      })
+    }
+    Settings.isListeningForGameUpdates = true;
+  }
+
+  static isListeningForSurveys = false;
+  static listenForSurveys(socket: Socket) {
+    if(!Settings.isListeningForSurveys) {
+      socket.on('newSurvey', (data) => {
+        console.log("received survey: " + JSON.stringify( data['survey']));
+
+        Settings.waitForCardResponse = false;
+        Settings.receivedCardResponse = false;
+        Settings.game.currentCard = data['survey'];
+        Settings.game.currentCategory = 'survey';
+      })
+    }
+    Settings.isListeningForSurveys = true;
+  }
+
+  static isListeningForSurveyUpdates = false;
+  static listenForSurveyUpdates(socket: Socket) {
+    if(!Settings.isListeningForSurveyUpdates) {
+      socket.on('surveyUpdate', (data) => {
+        console.log("received survey update: " + JSON.stringify( data['survey']));
+        Settings.game.currentCard = data['survey'];
+      })
+    }
+    Settings.isListeningForSurveyUpdates = true;
+  }
+
+
   static setRandomAvatar() {
     Settings.user.avatar = Settings.avatarFileNames[Math.floor(Math.random() * Settings.avatarFileNames.length)];
   }
 
   static setRandomName() {
     Settings.user.name = Settings.randomNames[Math.floor(Math.random() * Settings.randomNames.length)];
+  }
 
+
+  static isGameStarted = false;
+  static waitForCardResponse = false;
+  static receivedCardResponse = false;
+
+  static game = {
+    players: [],
+    admin: {},
+    categories: [],
+    themes: [],
+    cardsPerGame: 25,
+    cardsPlayed: 0,
+    currentCard: undefined,
+    currentCategory: 'none',
+    multiplier: 1
+  }
+
+  static user = {
+    name: '',
+    socketId: undefined,
+    isAdmin: false,
+    avatar: '',
+    // for surveys etc where we have to wait for others to complete actions before continuing
+    hasAnswered: false,
+    sips: 0,
+    multiplier: 1
   }
 
 

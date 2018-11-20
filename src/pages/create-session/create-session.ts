@@ -3,6 +3,8 @@ import {AlertController, IonicPage, NavController, NavParams, ToastController} f
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
+import {Device} from "@ionic-native/device";
+import {TabsPage} from "../tabs/tabs";
 
 /**
  * Generated class for the CreateSessionPage page.
@@ -32,11 +34,23 @@ export class CreateSessionPage {
     return Settings.selectedCategories;
   }
 
+  get selectedThemes() {
+    return Settings.selectedThemes;
+  }
+
+  get cardsPerGame() {
+    return Settings.game.cardsPerGame;
+  }
+
+  set cardsPerGame(count) {
+    Settings.game.cardsPerGame = count;
+  }
+
   get user() {
     return Settings.user;
   }
 
-  constructor(private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
+  constructor(private device: Device, private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
   }
 
   chooseCategories() {
@@ -54,7 +68,7 @@ export class CreateSessionPage {
     alert.addButton('Cancel');
     alert.addButton({
       text: 'Okay',
-      handler: (data: any) => {
+      handler: () => {
         let i = 0;
         for (let box of alert.data.inputs) {
 
@@ -67,9 +81,37 @@ export class CreateSessionPage {
     alert.present();
   }
 
+  chooseThemes() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Choose the Themes for your cards');
+    alert.setCssClass('alert');
+
+    for (let theme of Settings.themes) {
+      alert.addInput({
+        type: 'checkbox',
+        label: theme.name,
+        value: "",
+        checked: theme.enabled
+      });
+    }
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Okay',
+      handler: () => {
+        let i = 0;
+        for (let box of alert.data.inputs) {
+          Settings.themes[i].enabled = box.checked;
+          i++;
+        }
+      }
+    });
+
+    alert.present();
+  }
+
   ionViewWillEnter() {
     if (!this.user.name || !this.user.avatar) {
-      Settings.initRandomUser(this.socket);
+      Settings.initRandomUser(this.socket, this.device);
       Settings.listenForUserChanges;
     }
   }
@@ -92,7 +134,10 @@ export class CreateSessionPage {
     this.socket.emit('createRoomRequest', {
       user: this.user,
       room: this.room,
-      settings: {categories: this.selectedCategories}
+      categories: this.selectedCategories,
+      themes: this.selectedThemes,
+      cardsPerGame: this.cardsPerGame,
+      cardsPlayed: 0
     });
   }
 
@@ -119,7 +164,10 @@ export class CreateSessionPage {
 
   private registerEvents() {
     let roomCreatedEvent = this.onRoomCreated().subscribe((data) => {
-      this.navCtrl.setRoot('GameLobbyPage');
+      Settings.isGameStarted = true;
+      Settings.game = data['game'];
+
+      this.navCtrl.setRoot(TabsPage);
     })
 
 
@@ -128,6 +176,10 @@ export class CreateSessionPage {
     });
 
     this.events.push(roomCreatedEvent, roomAlreadyExistsEvent);
+  }
+
+  goToUserSettings() {
+    this.navCtrl.push('UserPage')
   }
 
   private showToast(msg) {

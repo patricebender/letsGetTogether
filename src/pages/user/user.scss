@@ -3,7 +3,7 @@ page-user {
   .bigAvatar {
     width: 100px;
     height: 100px;
-    border: #007aff solid 1px;
+    border: color($colors, accentGreen) solid 1px;
     margin: 20px;
     border-radius: 50px;
   }

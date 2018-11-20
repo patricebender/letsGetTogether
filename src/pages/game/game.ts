@@ -18,9 +18,12 @@ import {Settings} from "../settings";
 export class GamePage {
 
   get isGameStarted() {
-    return Settings.game.isGameStarted;
+    return Settings.isGameStarted;
   }
 
+  get game() {
+    return Settings.game;
+  }
 
 
   get user() {
@@ -31,8 +34,18 @@ export class GamePage {
     return Settings.room;
   }
 
+  get currentCardCategory(){
+    return Settings.game.currentCategory;
+  }
+
+  goToUserSettings() {
+    this.navCtrl.push('UserPage');
+  }
+
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
+    Settings.listenForSurveys(socket);
+    Settings.listenForSurveyUpdates(socket);
   }
 
 
@@ -47,7 +60,7 @@ export class GamePage {
   }
 
   exitGame() {
-    Settings.game.isGameStarted = false;
+    Settings.isGameStarted = false;
     this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
   }
