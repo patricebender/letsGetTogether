@@ -83,12 +83,11 @@ export class Settings {
 
 
   static randomNames = [
-    'Peter Punsch',
     'Ronald Rum',
     'Angela Absinth',
     'Ricky la Fleur',
     'Lahey Liquor',
-    'Randy Burgers',
+    'Brandy Randy',
     'Karl Kirschwasser',
     'Gisela Gin-Fizz',
     'Valerie Vodka',
@@ -101,8 +100,15 @@ export class Settings {
     'Tequila Torsten',
     'Bier-git',
     'Nina Niemalsnüchtern',
-    'Kahlua Kirsten'
-
+    'Kahlua Kirsten',
+    'Martini Martin',
+    'Pils Petra',
+    'Export Erwin',
+    'Margarita Michel',
+    'Carla Cognac',
+    'Karl Korn',
+    'Portwein Peter',
+    'Naughty Norbert'
   ]
 
 
