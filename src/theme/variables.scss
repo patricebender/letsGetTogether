@@ -60,8 +60,13 @@ $toolbar-background: darken(color($colors, dark), 5%);
 $tabs-background:  color($colors, cardColor);
 $tabs-ios-tab-icon-color: color($colors, accentGreen);
 $tabs-md-tab-icon-color: color($colors, accentGreen);
+$tabs-wp-tab-icon-color: color($colors, accentGreen);
+
+
+$tabs-wp-tab-icon-color-active: color($colors, accentGreen);
 $tabs-ios-tab-icon-color-active: color($colors, accentGreen);
 $tabs-md-tab-icon-color-active: color($colors, accentGreen);
+
 
 /* End Tabs */
 
