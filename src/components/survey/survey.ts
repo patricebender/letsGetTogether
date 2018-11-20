@@ -62,7 +62,7 @@ export class SurveyComponent {
     Settings.waitForCardResponse = true;
     this.userAnswer = option.title;
 
-    this.socket.emit('surveyAnswer', {surveyTitle: this.survey.title, answer: option.title})
+    this.socket.emit('surveyAnswer', {survey: this.survey, answer: option.title})
 
   }
 
