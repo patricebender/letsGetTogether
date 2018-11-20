@@ -1,0 +1,42 @@
+<!--
+  Generated template for the GameSettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="darkBackground">
+  <div>
+    <ion-card>
+      <ion-card-content>
+        <ion-list no-lines>
+          <ion-list-header>
+            Change settings for {{room}}
+          </ion-list-header>
+
+
+          <ion-item tappable="true" (click)="chooseCategories()">
+            <h3 margin-bottom stacked>Categories</h3>
+            <div class="noLineBreak"><p *ngFor="let category of selectedCategories">{{category.name }} &nbsp; </p></div>
+            <ion-icon item-end name="arrow-forward"></ion-icon>
+          </ion-item>
+          <ion-item tappable="true" (click)="chooseThemes()">
+            <h3 margin-bottom stacked>Themes</h3>
+            <div class="noLineBreak"><p *ngFor="let theme of selectedThemes">{{theme.name }} &nbsp; </p></div>
+
+            <ion-icon item-end name="arrow-forward"></ion-icon>
+          </ion-item>
+
+
+        </ion-list>
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+</ion-content>
