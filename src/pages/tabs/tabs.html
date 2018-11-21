@@ -1,0 +1,5 @@
+<ion-tabs #myTabs>
+  <ion-tab [root]="gameRoot" [show]="isGameStarted"  tabIcon="beer"></ion-tab>
+  <ion-tab [root]="playerOverviewRoot" [show]="isGameStarted" tabIcon="people"></ion-tab>
+  <ion-tab [root]="gameOverviewRoot" [show]="false"  tabIcon="stats"></ion-tab>
+</ion-tabs>
