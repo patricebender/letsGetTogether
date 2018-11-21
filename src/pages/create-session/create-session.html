@@ -1,0 +1,77 @@
+<!--
+  Generated template for the CreateSessionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="darkBackground">
+  <div>
+    <ion-card>
+      <ion-list no-lines>
+        <ion-list-header>Dein Profil:</ion-list-header>
+        <ion-item tappable="true" (click)="goToUserSettings()">
+          <ion-avatar class="solidBorder roundedSmall" item-start>
+            <img src="../../assets/avatar/{{user.avatar}}">
+          </ion-avatar>
+          <h2>{{user.name}}</h2>
+          <p>Ugh. As if.</p>
+          <ion-icon item-end name="arrow-forward"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-content>
+        <ion-list no-lines>
+
+          <ion-item>
+            <ion-label stacked>Raum Name: </ion-label>
+            <ion-input class="solidBorderBottom" [(ngModel)]="room" type="text" value=""></ion-input>
+          </ion-item>
+
+
+          <ion-list padding-vertical>
+            <ion-item>
+              <ion-label stacked>Runden pro Spiel
+                <ion-badge item-end>{{cardsPerGame}}</ion-badge>
+              </ion-label>
+              <ion-range min="10" max="100" [(ngModel)]="cardsPerGame">
+                <ion-icon range-left name="remove"></ion-icon>
+                <ion-icon range-right name="infinite"></ion-icon>
+              </ion-range>
+            </ion-item>
+          </ion-list>
+
+          <ion-item tappable="true" (click)="chooseCategories()">
+            <h3 margin-bottom stacked>Kategorien</h3>
+            <div class="noLineBreak"><p *ngFor="let category of selectedCategories">{{category.name }} &nbsp; </p></div>
+            <ion-icon item-end name="arrow-forward"></ion-icon>
+          </ion-item>
+          <ion-item tappable="true" (click)="chooseThemes()">
+            <h3 margin-bottom stacked>Themen</h3>
+            <div class="noLineBreak"><p *ngFor="let theme of selectedThemes">{{theme.name }} &nbsp; </p></div>
+
+            <ion-icon item-end name="arrow-forward"></ion-icon>
+          </ion-item>
+          <ion-row padding-top justify-content-center>
+            <button (click)="createRoomRequest()" ion-button color="cardColor"
+                    [disabled]="!room || selectedCategories.length === 0" class="solidBorder rounded" large>
+              <ion-icon name="play" color="accentGreen"></ion-icon>
+            </button>
+          </ion-row>
+
+
+        </ion-list>
+      </ion-card-content>
+
+    </ion-card>
+  </div>
+</ion-content>
