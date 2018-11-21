@@ -17,17 +17,17 @@
       <ion-card-content>
         <ion-list no-lines>
           <ion-list-header>
-            Change settings for {{room}}
+           Ändere die Einstellungen für {{room}}
           </ion-list-header>
 
 
           <ion-item tappable="true" (click)="chooseCategories()">
-            <h3 margin-bottom stacked>Categories</h3>
+            <h3 margin-bottom stacked>Kategorien</h3>
             <div class="noLineBreak"><p *ngFor="let category of selectedCategories">{{category.name }} &nbsp; </p></div>
             <ion-icon item-end name="arrow-forward"></ion-icon>
           </ion-item>
           <ion-item tappable="true" (click)="chooseThemes()">
-            <h3 margin-bottom stacked>Themes</h3>
+            <h3 margin-bottom stacked>Themen</h3>
             <div class="noLineBreak"><p *ngFor="let theme of selectedThemes">{{theme.name }} &nbsp; </p></div>
 
             <ion-icon item-end name="arrow-forward"></ion-icon>

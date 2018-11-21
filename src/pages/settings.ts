@@ -8,10 +8,6 @@ export class Settings {
   }
 
 
-
-
-
-
   static updateUser(user) {
     Settings.user = user;
   }
@@ -20,14 +16,17 @@ export class Settings {
 
 
   static categories = [{
-    name: "Survey",
+    name: "Umfrage",
     enabled: true
   }, {
-    name: "Action",
+    name: "Schätzen",
+    enabled: true
+  }, {
+    name: "Aktionen",
     enabled: false
   },
     {
-      name: "Curse",
+      name: "Flüche",
       enabled: false
     }, {
       name: "Duell",
@@ -37,10 +36,6 @@ export class Settings {
       enabled: false
     }, {
       name: "Quiz",
-      enabled: false
-    },
-    {
-      name: "Outdoor",
       enabled: false
     }
   ]
@@ -58,11 +53,7 @@ export class Settings {
       enabled: true
     },
     {
-      name: "Computer Science",
-      enabled: true
-    },
-    {
-      name: "Intimate",
+      name: "Informatik",
       enabled: true
     },
     {
@@ -70,7 +61,7 @@ export class Settings {
       enabled: true
     },
     {
-      name: "Politics",
+      name: "Politik",
       enabled: false
     }
   ]
@@ -175,38 +166,40 @@ export class Settings {
 
 
   static isListeningForGameUpdates = false;
+
   static listenForGameUpdates(socket: Socket) {
 
     //only listen if not subscribed
     if (!Settings.isListeningForGameUpdates) {
       socket.on('gameUpdate', (data) => {
-        console.log("received game: " + data['game'])
+        console.log("received game: " + JSON.stringify(data['game']))
         Settings.game = data['game'];
       })
     }
     Settings.isListeningForGameUpdates = true;
   }
 
-  static isListeningForSurveys = false;
-  static listenForSurveys(socket: Socket) {
-    if(!Settings.isListeningForSurveys) {
-      socket.on('newSurvey', (data) => {
-        console.log("received survey: " + JSON.stringify( data['survey']));
 
+  static isListeningForCard = false;
+  static listenForCards(socket: Socket) {
+    if(!Settings.isListeningForCard){
+      socket.on('newCard', (data) => {
+        console.log("received card: " + JSON.stringify(data['card']));
+        Settings.game.currentCard = data['card'];
+        Settings.game.currentCategory = data['card'].category;
         Settings.waitForCardResponse = false;
         Settings.receivedCardResponse = false;
-        Settings.game.currentCard = data['survey'];
-        Settings.game.currentCategory = 'survey';
       })
+      Settings.isListeningForCard = true;
     }
-    Settings.isListeningForSurveys = true;
   }
 
   static isListeningForSurveyUpdates = false;
+
   static listenForSurveyUpdates(socket: Socket) {
-    if(!Settings.isListeningForSurveyUpdates) {
+    if (!Settings.isListeningForSurveyUpdates) {
       socket.on('surveyUpdate', (data) => {
-        console.log("received survey update: " + JSON.stringify( data['survey']));
+        console.log("received survey update: " + JSON.stringify(data['survey']));
         Settings.game.currentCard = data['survey'];
       })
     }

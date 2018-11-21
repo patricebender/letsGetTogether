@@ -44,7 +44,7 @@ export class GamePage {
 
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
-    Settings.listenForSurveys(socket);
+    Settings.listenForCards(this.socket);
     Settings.listenForSurveyUpdates(socket);
   }
 

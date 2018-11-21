@@ -49,7 +49,7 @@ export class GameSettingsPage {
 
   chooseCategories() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Ändere die Karten Kategorien des Spiels');
+    alert.setTitle('Welche Karten sollen gespielt werden?');
 
     for (let category of Settings.categories) {
       alert.addInput({

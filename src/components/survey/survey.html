@@ -6,19 +6,19 @@
   </ion-title>
 
 
-  <ion-row class="answerContainer" padding justify-content-center>
-    <button  style="text-transform: none" [disabled]="waitingForResults || survey.closed" *ngFor="let option of survey.options" (click)="emitAnswer(option)" ion-button large color="cardColor"
+  <ion-row *ngIf="!waitForCardResponse || survey.closed" padding justify-content-center>
+    <button  style="text-transform: none" *ngFor="let option of survey.options" (click)="emitAnswer(option)" ion-button large color="cardColor"
             class="solidBorder rounded answer" ngClass="{{userAnswer === option.title? 'userChoice' : ''}}">
       <ion-label style="white-space: pre-line" padding-vertical>{{option.title}}  {{waitingForResults || survey.closed ? ' x' + option.voters.length  : ''}}</ion-label>
     </button>
   </ion-row>
-  <ion-row *ngIf="waitingForResults" padding justify-content-center>
-    <p padding-horizontal>Waiting for results</p>
+  <ion-row *ngIf="waitForCardResponse" padding justify-content-center>
+    <p padding-horizontal>Warte auf die anderen</p>
     <ion-spinner color="accentGreen"></ion-spinner>
   </ion-row>
-  <ion-row *ngIf="receivedResult " padding justify-content-center>
-    <p padding-horizontal>{{losers.length > 0 ? 'Here are the losers: ' : 'Meh. No losers this time :/'}} </p>
-    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'YOU' : loser.name}} </div>
+  <ion-row *ngIf="receivedCardResponse " padding justify-content-center>
+    <p padding-horizontal>{{losers.length > 0 ? 'Hier sind die Verlierer: ' : 'Meh. Dieses mal trinkt keiner :/'}} </p>
+    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'DU' : loser.name}} </div>
   </ion-row>
 
 
