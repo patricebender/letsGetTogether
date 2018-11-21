@@ -1,0 +1,44 @@
+<!-- Generated template for the SurveyComponent component -->
+
+<ion-card class="rounded">
+  <ion-title style="text-align: center" padding-top>
+    <div style="white-space: pre-line">"{{guess.question}}"</div>
+  </ion-title>
+
+
+  <ion-row padding justify-content-center>
+    <ion-item>
+
+      <ion-label floating style="white-space: pre-line" padding-vertical>{{guess.unit}}:</ion-label>
+      <ion-input type="number" class="solidBorderBottom" [(ngModel)]="userAnswer"
+                 [disabled]="waitForCardResponse || guess.closed" color="cardColor">
+
+      </ion-input>
+    </ion-item>
+
+  </ion-row>
+  <ion-row *ngIf="!waitForCardResponse && !guess.closed" class="answerContainer" padding-vertical
+           justify-content-center>
+    <button style="text-transform: none" [disabled]="!userAnswer" (click)="emitAnswer()" ion-button large
+            color="cardColor"
+            class="solidBorder rounded">
+      <ion-label style="white-space: pre-line" padding-vertical>Abschicken</ion-label>
+    </button>
+  </ion-row>
+  <ion-row *ngIf="waitForCardResponse" padding justify-content-center>
+    <p padding-horizontal>Warte auf die anderen</p>
+    <ion-spinner color="accentGreen"></ion-spinner>
+  </ion-row>
+  <ion-row *ngIf="receivedResult " padding justify-content-center>
+    <p padding-horizontal>
+      Hier sind die Ergebnisse:
+    </p>
+    <div *ngFor="let rank of ranking">
+      <p>
+        {{rank.player.name === user.name ? 'DU' : rank.player.name}}: {{rank.answer}}
+      </p>
+    </div>
+  </ion-row>
+
+
+</ion-card>
