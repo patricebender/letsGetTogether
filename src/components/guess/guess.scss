@@ -1,3 +1,11 @@
 guess {
+  .rankRow {
+    width: 100%;
+    display: flex;
+  }
 
+  .rankRow > div {
+    flex-grow: 1;
+
+  }
 }

@@ -17,9 +17,16 @@ export class GuessComponent {
 
 
   userAnswer: number;
-  ranking = [];
+
   events = [];
 
+  get ranking() {
+    return Settings.game.currentCard.ranking;
+  }
+
+  set ranking(rankarray) {
+    Settings.game.currentCard.ranking = rankarray;
+  }
 
   get waitForCardResponse() {
     return Settings.waitForCardResponse;

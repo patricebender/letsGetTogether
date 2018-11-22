@@ -1,10 +1,9 @@
 import {Socket} from "ng-socket-io";
-import {NavController} from "ionic-angular";
 import {Device} from "@ionic-native/device";
 
 export class Settings {
 
-  constructor(private navCtrl: NavController) {
+  constructor() {
   }
 
 
@@ -172,8 +171,9 @@ export class Settings {
     //only listen if not subscribed
     if (!Settings.isListeningForGameUpdates) {
       socket.on('gameUpdate', (data) => {
-        console.log("received game: " + JSON.stringify(data['game']))
+        console.log("received game update:")
         Settings.game = data['game'];
+        console.log(Settings.user.socketId, JSON.stringify(Settings.game.admin))
       })
     }
     Settings.isListeningForGameUpdates = true;
