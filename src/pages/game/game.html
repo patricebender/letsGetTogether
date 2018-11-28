@@ -22,7 +22,7 @@
           <p>Schlücke:</p>
           <ion-badge padding-horizontal>{{user.sips}}</ion-badge>
         </ion-col>
-        <ion-col style="text-align: center" >
+        <ion-col style="text-align: center">
           <p>Multiplikator: </p>
           <ion-badge padding-horizontal>x {{user.multiplier}}</ion-badge>
 
@@ -34,12 +34,16 @@
           <ion-badge padding-horizontal>{{game.cardsPlayed}} / {{game.cardsPerGame}}</ion-badge>
 
         </ion-col>
-        <ion-col style="text-align: center" >
+        <ion-col style="text-align: center">
           <p> Spiel Multiplikator:</p>
           <ion-badge padding-horizontal>x {{game.multiplier}}</ion-badge>
 
         </ion-col>
       </ion-row>
+
+      <start-card item-end *ngIf="user.socketId === game.admin.socketId"></start-card>
+
+
     </ion-list>
   </ion-card>
 
@@ -52,11 +56,6 @@
 
     </guess>
   </div>
-
-
-  <ion-footer no-border padding-vertical>
-    <start-card item-end *ngIf="user.socketId === game.admin.socketId"></start-card>
-  </ion-footer>
 
 
 </ion-content>
