@@ -1,8 +1,8 @@
 <!-- Generated template for the SurveyComponent component -->
 
-<ion-card class="rounded" padding>
-  <ion-title style="text-align: center">
-    <div style="white-space: pre-line">"{{guess.question}}"</div>
+<ion-card class="rounded" padding-top>
+  <ion-title>
+    <div class="cardTitle">"{{guess.question}}"</div>
   </ion-title>
 
 
@@ -35,7 +35,7 @@
     <p padding-horizontal>Warte auf die anderen</p>
     <ion-spinner color="accentGreen"></ion-spinner>
   </ion-row>
-  <ion-list *ngIf="receivedResult || guess.closed" padding-vertical  justify-content-center>
+  <ion-list *ngIf="receivedResult || guess.closed" padding-vertical justify-content-center>
     <ion-item *ngFor="let rank of ranking">
       <div class="rankRow" justify-content-start>
         <div style="text-align: start;">{{rank.rankNumber}}.</div>

@@ -1,15 +1,18 @@
 <!-- Generated template for the SurveyComponent component -->
 
 <ion-card class="rounded">
-  <ion-title  style="text-align: center" padding>
-    <div style="white-space: pre-line">"{{survey.question}}"</div>
+  <ion-title padding-top>
+    <div class="cardTitle">"{{survey.question}}"</div>
   </ion-title>
 
 
   <ion-row padding justify-content-center>
-    <button [disabled]="waitForCardResponse || survey.closed" style="text-transform: none" *ngFor="let option of survey.options" (click)="emitAnswer(option)" ion-button large color="cardColor"
+    <button [disabled]="waitForCardResponse || survey.closed" style="text-transform: none; font-size: 1.5rem"
+            *ngFor="let option of survey.options" (click)="emitAnswer(option)" ion-button large color="cardColor"
             class="solidBorder rounded answer" ngClass="{{userAnswer === option.title? 'userChoice' : ''}}">
-      <ion-label style="white-space: pre-line" padding-vertical>{{option.title}}  {{waitingForResults || survey.closed ? ' x' + option.voters.length  : ''}}</ion-label>
+      <ion-label style="white-space: pre-line" padding-vertical>{{option.title}} {{waitingForResults || survey.closed ?
+        ' x' + option.voters.length : ''}}
+      </ion-label>
     </button>
   </ion-row>
   <ion-row *ngIf="waitForCardResponse" padding justify-content-center>
@@ -18,7 +21,7 @@
   </ion-row>
   <ion-row *ngIf="receivedCardResponse || survey.closed" padding justify-content-center>
     <p padding-horizontal>{{losers.length > 0 ? 'Hier sind die Verlierer: ' : 'Meh. Dieses mal trinkt keiner :/'}} </p>
-    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'DU' : loser.name}} </div>
+    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'DU' : loser.name}}</div>
   </ion-row>
 
 
