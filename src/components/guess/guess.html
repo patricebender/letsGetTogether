@@ -1,0 +1,50 @@
+<!-- Generated template for the SurveyComponent component -->
+
+<ion-card class="rounded" padding-top>
+  <ion-title>
+    <div class="cardTitle">"{{guess.question}}"</div>
+  </ion-title>
+
+
+  <ion-row justify-content-center>
+    <ion-item *ngIf="!waitForCardResponse && !guess.closed">
+
+      <ion-label floating style="white-space: pre-line" padding-vertical>{{guess.unit || 'Antwort'}}:</ion-label>
+      <ion-input type="number" class="solidBorderBottom" [(ngModel)]="userAnswer"
+                 color="cardColor">
+
+      </ion-input>
+    </ion-item>
+    <ion-title *ngIf="receivedResult || guess.closed" style="text-align: center" padding-top>
+      <div>
+        <ion-icon color="accentGreen" name="arrow-round-forward"></ion-icon>
+        {{guess.answer}} {{guess.unit}} {{guess.answerNote ?  guess.answerNote : ''}}
+      </div>
+    </ion-title>
+
+  </ion-row>
+  <ion-row *ngIf="!waitForCardResponse && !guess.closed" class="answerContainer" padding-vertical
+           justify-content-center>
+    <button style="text-transform: none" [disabled]="!userAnswer" (click)="emitAnswer()" ion-button large
+            color="cardColor"
+            class="solidBorder rounded">
+      <ion-label style="white-space: pre-line" padding-vertical>Abschicken</ion-label>
+    </button>
+  </ion-row>
+  <ion-row *ngIf="waitForCardResponse" padding-top justify-content-center>
+    <p padding-horizontal>Warte auf die anderen</p>
+    <ion-spinner color="accentGreen"></ion-spinner>
+  </ion-row>
+  <ion-list *ngIf="receivedResult || guess.closed" padding-vertical justify-content-center>
+    <ion-item *ngFor="let rank of ranking">
+      <div class="rankRow" justify-content-start>
+        <div style="text-align: start;">{{rank.rankNumber}}.</div>
+        <div style="flex-grow: 3; text-align: start;">{{rank.player.name === user.name ? 'DU' : rank.player.name}}</div>
+        <div style="text-align: end;">{{rank.answer}} ({{rank.difference}})</div>
+        <div style="text-align: end;">{{rank.sips}} x 🍻</div>
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+</ion-card>

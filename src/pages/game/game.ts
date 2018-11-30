@@ -44,7 +44,7 @@ export class GamePage {
 
 
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
-    Settings.listenForSurveys(socket);
+    Settings.listenForCards(this.socket);
     Settings.listenForSurveyUpdates(socket);
   }
 
@@ -63,13 +63,5 @@ export class GamePage {
     Settings.isGameStarted = false;
     this.socket.emit('leaveRoom');
     this.navCtrl.setRoot('JoinSessionPage');
-  }
-
-  private showToast(msg) {
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 2000
-    });
-    toast.present();
   }
 }

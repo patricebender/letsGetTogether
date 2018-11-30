@@ -3,12 +3,15 @@ import { SurveyComponent } from './survey/survey';
 import { WaitForItComponent } from './wait-for-it/wait-for-it';
 import {IonicModule} from "ionic-angular";
 import { StartCardComponent } from './start-card/start-card';
+import { GuessComponent } from './guess/guess';
 @NgModule({
 	declarations: [SurveyComponent,
     SurveyComponent,
     WaitForItComponent,
     StartCardComponent,
-    StartCardComponent],
+    StartCardComponent,
+    GuessComponent,
+    GuessComponent],
 	imports: [
     IonicModule
   ],
@@ -16,6 +19,8 @@ import { StartCardComponent } from './start-card/start-card';
     SurveyComponent,
     WaitForItComponent,
     StartCardComponent,
-    StartCardComponent]
+    StartCardComponent,
+    GuessComponent,
+    GuessComponent]
 })
 export class ComponentsModule {}

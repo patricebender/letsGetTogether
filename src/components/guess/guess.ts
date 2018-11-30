@@ -4,26 +4,35 @@ import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 
 /**
- * Generated class for the SurveyComponent component.
+ * Generated class for the GuessComponent component.
  *
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
 @Component({
-  selector: 'survey',
-  templateUrl: 'survey.html'
+  selector: 'guess',
+  templateUrl: 'guess.html'
 })
-export class SurveyComponent {
+export class GuessComponent {
 
 
-  userAnswer = '';
-  losers = [];
+  userAnswer: number;
+
+  events = [];
+
+  get ranking() {
+    return Settings.game.currentCard.ranking;
+  }
+
+  set ranking(rankarray) {
+    Settings.game.currentCard.ranking = rankarray;
+  }
 
   get waitForCardResponse() {
     return Settings.waitForCardResponse;
   }
 
-  get receivedCardResponse() {
+  get receivedResult() {
     return Settings.receivedCardResponse;
   }
 
@@ -35,21 +44,18 @@ export class SurveyComponent {
     Settings.waitForCardResponse = boolean;
   }
 
-  get user() {
-    return Settings.user;
+  get guess() {
+    return Settings.game.currentCard;
   }
 
 
-  events = [];
-
-  get survey() {
-    return Settings.game.currentCard;
+  get user() {
+    return Settings.user;
   }
 
   constructor(private socket: Socket) {
     this.registerEvents();
   }
-
   ionViewWillLeave() {
     this.events.forEach((event) => {
       event.unsubscribe();
@@ -57,35 +63,33 @@ export class SurveyComponent {
 
   }
 
-  emitAnswer(option) {
-    Settings.waitForCardResponse = true;
-    this.userAnswer = option.title;
-    this.socket.emit('surveyAnswer', {survey: this.survey, answer: option.title})
-
-  }
 
   registerEvents() {
-    let waitForSurveyResults = this.onReceiveSurveyResults().subscribe((data) => {
-      let survey = data['survey'];
-      Settings.game.currentCard = survey;
-      console.log("Received results for " + JSON.stringify(survey))
+    let waitForGuessResults = this.onReceiveSurveyResults().subscribe((data) => {
+      let guess = data['guess'];
+      Settings.game.currentCard = guess;
+      console.log("Received results for " + JSON.stringify(guess))
       this.receivedCardResponse = true;
-      this.userAnswer = '';
       this.waitForCardResponse = false;
-
-
-      this.losers = data['losers'];
+      this.ranking = data['ranking'];
     });
 
-    this.events.push(waitForSurveyResults);
+    this.events.push(waitForGuessResults);
 
   }
 
   private onReceiveSurveyResults() {
     return new Observable((observer) => {
-      this.socket.on('surveyResults', (data) => {
+      this.socket.on('guessResults', (data) => {
         observer.next(data);
       })
     })
   }
+
+  emitAnswer() {
+    this.waitForCardResponse = true;
+    this.socket.emit('guessAnswer', {guess: this.guess, answer: this.userAnswer})
+  }
+
+
 }

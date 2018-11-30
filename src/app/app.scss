@@ -44,6 +44,12 @@
   color: darken(white, 20%);
 }
 
+.cardTitle {
+  text-align: center;
+  font-size: 1.8rem;
+  white-space: pre-line;
+}
+
 .centerContent {
   display: flex;
   align-content: center;
