@@ -9,7 +9,7 @@
   <ion-row justify-content-center>
     <ion-item *ngIf="!waitForCardResponse && !guess.closed">
 
-      <ion-label floating style="white-space: pre-line" padding-vertical>{{guess.unit}}:</ion-label>
+      <ion-label floating style="white-space: pre-line" padding-vertical>{{guess.unit || 'Antwort'}}:</ion-label>
       <ion-input type="number" class="solidBorderBottom" [(ngModel)]="userAnswer"
                  color="cardColor">
 
@@ -18,7 +18,7 @@
     <ion-title *ngIf="receivedResult || guess.closed" style="text-align: center" padding-top>
       <div>
         <ion-icon color="accentGreen" name="arrow-round-forward"></ion-icon>
-        {{guess.answer}} {{guess.unit}}
+        {{guess.answer}} {{guess.unit}} {{guess.answerNote ?  guess.answerNote : ''}}
       </div>
     </ion-title>
 

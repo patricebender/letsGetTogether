@@ -13,8 +13,8 @@ import {UserPageModule} from "../pages/user/user.module";
 import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
 import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avatar.module";
 
-///* Digital Ocean */ const config: SocketIoConfig = { url:  'http://165.227.151.58:3001', options: {}};
-const config: SocketIoConfig = { url: 'localhost:3001', options: {}};
+/* Digital Ocean */ const config: SocketIoConfig = { url:  'http://165.227.151.58:3001', options: {}};
+//const config: SocketIoConfig = { url: 'localhost:3001', options: {}};
 
 @NgModule({
   declarations: [

@@ -16,9 +16,11 @@ export class Settings {
 
   static categories = [{
     name: "Umfrage",
+    type: "surveys",
     enabled: true
   }, {
     name: "Schätzen",
+    type: "guess",
     enabled: true
   }, {
     name: "Aktionen",

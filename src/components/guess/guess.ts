@@ -48,6 +48,7 @@ export class GuessComponent {
     return Settings.game.currentCard;
   }
 
+
   get user() {
     return Settings.user;
   }
