@@ -4,12 +4,14 @@ import { WaitForItComponent } from './wait-for-it/wait-for-it';
 import {IonicModule} from "ionic-angular";
 import { AdminControlsComponent } from './admin-controls/admin-controls';
 import { GuessComponent } from './guess/guess';
+import { GameOverComponent } from './game-over/game-over';
 @NgModule({
 	declarations: [SurveyComponent,
     SurveyComponent,
     WaitForItComponent,
     AdminControlsComponent,
-    GuessComponent],
+    GuessComponent,
+    GameOverComponent],
 	imports: [
     IonicModule
   ],
@@ -17,6 +19,7 @@ import { GuessComponent } from './guess/guess';
     SurveyComponent,
     WaitForItComponent,
     AdminControlsComponent,
-    GuessComponent]
+    GuessComponent,
+    GameOverComponent]
 })
 export class ComponentsModule {}

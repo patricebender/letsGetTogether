@@ -167,7 +167,6 @@ export class Settings {
 
 
   static isListeningForGameUpdates = false;
-
   static listenForGameUpdates(socket: Socket) {
 
     //only listen if not subscribed
@@ -177,6 +176,7 @@ export class Settings {
         Settings.game = data['game'];
         console.log(Settings.user.socketId, JSON.stringify(Settings.game.admin))
       })
+
     }
     Settings.isListeningForGameUpdates = true;
   }
@@ -187,8 +187,6 @@ export class Settings {
     if(!Settings.isListeningForCard){
       socket.on('newCard', (data) => {
         console.log("received card: " + JSON.stringify(data['card']));
-        Settings.game.currentCard = data['card'];
-        Settings.game.currentCategory = data['card'].category;
         Settings.waitForCardResponse = false;
         Settings.receivedCardResponse = false;
       })
