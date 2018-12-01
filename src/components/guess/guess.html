@@ -1,6 +1,6 @@
 <!-- Generated template for the SurveyComponent component -->
 
-<ion-card class="rounded" padding-top>
+<ion-card class="rounded" padding-vertical>
   <ion-title>
     <div class="cardTitle">"{{guess.question}}"</div>
   </ion-title>
@@ -9,17 +9,17 @@
   <ion-row justify-content-center>
     <ion-item *ngIf="!waitForCardResponse && !guess.closed">
 
-      <ion-label floating style="white-space: pre-line" padding-vertical>{{guess.unit || 'Antwort'}}:</ion-label>
+      <ion-label floating class="wrapLine" padding-vertical>{{guess.unit || 'Antwort'}}:</ion-label>
       <ion-input type="number" class="solidBorderBottom" [(ngModel)]="userAnswer"
                  color="cardColor">
 
       </ion-input>
     </ion-item>
     <ion-title *ngIf="receivedResult || guess.closed" style="text-align: center" padding-top>
-      <div>
-        <ion-icon color="accentGreen" name="arrow-round-forward"></ion-icon>
-        {{guess.answer}} {{guess.unit}} {{guess.answerNote ?  guess.answerNote : ''}}
-      </div>
+
+
+      <h2 class="wrapLine">  <div style="word-break: break-word"><ion-icon color="accentGreen" name="arrow-round-forward"></ion-icon> {{guess.answer}} {{guess.unit}} {{guess.answerNote ? guess.answerNote : ''}}</div></h2>
+
     </ion-title>
 
   </ion-row>
@@ -28,7 +28,7 @@
     <button style="text-transform: none" [disabled]="!userAnswer" (click)="emitAnswer()" ion-button large
             color="cardColor"
             class="solidBorder rounded">
-      <ion-label style="white-space: pre-line" padding-vertical>Abschicken</ion-label>
+      <ion-label class="wrapLine" padding-vertical>Abschicken</ion-label>
     </button>
   </ion-row>
   <ion-row *ngIf="waitForCardResponse" padding-top justify-content-center>

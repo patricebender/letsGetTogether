@@ -10,7 +10,7 @@
     <button [disabled]="waitForCardResponse || survey.closed" style="text-transform: none; font-size: 1.5rem"
             *ngFor="let option of survey.options" (click)="emitAnswer(option)" ion-button large color="cardColor"
             class="solidBorder rounded answer" ngClass="{{userAnswer === option.title? 'userChoice' : ''}}">
-      <ion-label style="white-space: pre-line" padding-vertical>{{option.title}} {{waitingForResults || survey.closed ?
+      <ion-label class="wrapLine" padding-vertical>{{option.title}} {{waitingForResults || survey.closed ?
         ' x' + option.voters.length : ''}}
       </ion-label>
     </button>

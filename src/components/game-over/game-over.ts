@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Settings} from "../../pages/settings";
 
 /**
  * Generated class for the GameOverComponent component.
@@ -12,11 +13,17 @@ import { Component } from '@angular/core';
 })
 export class GameOverComponent {
 
-  text: string;
+  get game() {
+    return Settings.game;
+  }
+
+
+  get user() {
+    return Settings.user;
+  }
 
   constructor() {
     console.log('Hello GameOverComponent Component');
-    this.text = 'Hello World';
   }
 
 }
