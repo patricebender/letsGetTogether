@@ -1,7 +1,7 @@
 <!-- Generated template for the SurveyComponent component -->
 
 <ion-card class="rounded" padding-vertical>
-  <ion-title>
+  <ion-title >
     <div class="cardTitle">"{{guess.question}}"</div>
   </ion-title>
 
@@ -18,8 +18,11 @@
     <ion-title *ngIf="receivedResult || guess.closed" style="text-align: center" padding-top>
 
 
-      <h2 class="wrapLine">  <div style="word-break: break-word"><ion-icon color="accentGreen" name="arrow-round-forward"></ion-icon> {{guess.answer}} {{guess.unit}} {{guess.answerNote ? guess.answerNote : ''}}</div></h2>
-
+      <h2>
+          <ion-icon color="accentGreen" name="arrow-round-forward"></ion-icon>
+          {{guess.answer}} {{guess.unit}}
+      </h2>
+      <p class="answerNote">{{guess.answerNote ? guess.answerNote : ''}}</p>
     </ion-title>
 
   </ion-row>
