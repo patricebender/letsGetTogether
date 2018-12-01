@@ -9,14 +9,22 @@
 
   <ion-card class="rounded">
     <ion-list margin-top no-lines>
-      <ion-item tappable="true" (click)="goToUserSettings()">
-        <ion-avatar class="solidBorder miniAvatar" item-start>
-          <img src="../../assets/avatar/{{user.avatar}}">
-        </ion-avatar>
-        <h2>{{user.name}}</h2>
-        <p>{{room}}</p>
-        <ion-icon item-end name="arrow-forward"></ion-icon>
-      </ion-item>
+
+
+      <ion-row>
+         
+        <ion-item tappable="true" (click)="goToUserSettings()">
+          <ion-avatar class="solidBorder miniAvatar" item-start>
+            <img src="../../assets/avatar/{{user.avatar}}">
+          </ion-avatar>
+          <h2>{{user.name}}</h2>
+          <p>{{room}}</p>
+          <ion-icon item-end name="arrow-forward"></ion-icon>
+        </ion-item>
+
+      </ion-row>
+
+
       <ion-row justify-content-center>
         <ion-col style="text-align: center">
           <p>Schlücke:</p>
@@ -45,7 +53,7 @@
         </ion-col>
       </ion-row>
 
-      <start-card></start-card>
+      <admin-controls></admin-controls>
     </ion-list>
   </ion-card>
 
