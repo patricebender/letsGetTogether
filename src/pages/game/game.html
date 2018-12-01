@@ -52,7 +52,7 @@
   </ion-card>
 
   <div>
-    <wait-for-it padding-top class="fullWidth" *ngIf="!game.currentCard"></wait-for-it>
+    <wait-for-it padding-top class="fullWidth" *ngIf="(game.currentCard | json) == '{}'"></wait-for-it>
 
     <survey class="fullWidth" *ngIf="currentCardCategory === 'surveys'">
 
