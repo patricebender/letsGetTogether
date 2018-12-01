@@ -19,6 +19,15 @@ export class StartCardComponent {
     return Settings.game.currentCard;
   }
 
+  get game() {
+    return Settings.game;
+  }
+
+
+  get user() {
+    return Settings.user;
+  }
+
   constructor(private socket: Socket, private navCtrl: NavController) {
   }
 
