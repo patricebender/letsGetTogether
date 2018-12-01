@@ -35,7 +35,11 @@
   padding: 1px;
 }
 
-.roundedSmall {
+.roundedCorners {
+  border-radius: 20px;
+}
+
+.miniAvatar {
   border-radius: 20px;
   padding: 2px;
 }

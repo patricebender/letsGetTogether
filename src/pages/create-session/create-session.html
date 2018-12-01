@@ -14,11 +14,11 @@
 
 <ion-content class="darkBackground">
   <div>
-    <ion-card>
+    <ion-card  class="roundedCorners">
       <ion-list no-lines>
         <ion-list-header>Dein Profil:</ion-list-header>
         <ion-item tappable="true" (click)="goToUserSettings()">
-          <ion-avatar class="solidBorder roundedSmall" item-start>
+          <ion-avatar class="solidBorder miniAvatar" item-start>
             <img src="../../assets/avatar/{{user.avatar}}">
           </ion-avatar>
           <h2>{{user.name}}</h2>
@@ -28,7 +28,7 @@
       </ion-list>
     </ion-card>
 
-    <ion-card>
+    <ion-card  class="roundedCorners">
       <ion-card-content>
         <ion-list no-lines>
 

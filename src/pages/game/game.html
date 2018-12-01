@@ -8,9 +8,9 @@
 <ion-content class="darkBackground">
 
   <ion-card class="rounded">
-    <ion-list margin-vertical no-lines>
+    <ion-list margin-top no-lines>
       <ion-item tappable="true" (click)="goToUserSettings()">
-        <ion-avatar class="solidBorder roundedSmall" item-start>
+        <ion-avatar class="solidBorder miniAvatar" item-start>
           <img src="../../assets/avatar/{{user.avatar}}">
         </ion-avatar>
         <h2>{{user.name}}</h2>
@@ -45,9 +45,7 @@
         </ion-col>
       </ion-row>
 
-
-      <start-card item-end *ngIf="user.socketId === game.admin.socketId"></start-card>
-
+      <start-card></start-card>
     </ion-list>
   </ion-card>
 
