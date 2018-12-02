@@ -12,7 +12,7 @@
 </ion-card>
 
 <ion-row padding-top justify-content-center>
-  <button ion-button color="cardColor"  style="text-transform: none" class="solidBorder rounded" large>
+  <button (click)="startNewGame()" *ngIf="game.admin.socketId === user.socketId" ion-button color="cardColor"  style="text-transform: none" class="solidBorder rounded" large>
     <div padding-horizontal>Neues Spiel starten</div>
     <ion-icon name="play" color="accentGreen"></ion-icon>
   </button>

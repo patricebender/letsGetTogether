@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {Settings} from "../../pages/settings";
+import {Socket} from "ng-socket-io";
 
 /**
  * Generated class for the GameOverComponent component.
@@ -22,8 +23,12 @@ export class GameOverComponent {
     return Settings.user;
   }
 
-  constructor() {
+  constructor(private socket: Socket) {
     console.log('Hello GameOverComponent Component');
   }
 
+  startNewGame() {
+      console.log("requesting new game");
+      this.socket.emit('startNewGame');
+  }
 }

@@ -59,7 +59,7 @@
 
   <div *ngIf="!game.isOver">
     <wait-for-it padding-top class="fullWidth" *ngIf="(game.currentCard | json) == '{}'"></wait-for-it>
-    <survey class="fullWidth" *ngIf="currentCardCategory === 'surveys'">
+    <survey class="fullWidth" *ngIf="currentCardCategory === 'survey'">
     </survey>
     <guess class="fullWidth" *ngIf="currentCardCategory === 'guess'">
     </guess>
