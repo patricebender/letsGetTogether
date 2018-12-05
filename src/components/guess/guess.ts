@@ -48,6 +48,10 @@ export class GuessComponent {
     return Settings.game.currentCard;
   }
 
+  get playerLeftCount() {
+    return this.guess.playerLeftCount;
+  }
+
 
   get user() {
     return Settings.user;

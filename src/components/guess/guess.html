@@ -35,7 +35,7 @@
     </button>
   </ion-row>
   <ion-row *ngIf="waitForCardResponse" padding-top justify-content-center>
-    <p padding-horizontal>Warte auf die anderen</p>
+    <p padding-horizontal>Warte auf {{playerLeftCount === 1 ? " einen anderen Spieler" : playerLeftCount + " andere Spieler"}}</p>
     <ion-spinner color="accentGreen"></ion-spinner>
   </ion-row>
   <ion-list *ngIf="receivedResult || guess.closed" padding-vertical justify-content-center>
