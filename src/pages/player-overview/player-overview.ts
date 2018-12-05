@@ -19,7 +19,6 @@ export class PlayerOverviewPage {
 
   constructor(public socket: Socket, private navCtrl: NavController, public navParams: NavParams) {
     Settings.subscribeUserList(this.socket);
-    Settings.subscribeToAdminPromotion(this.socket);
     this.socket.emit('requestUserList');
   }
 

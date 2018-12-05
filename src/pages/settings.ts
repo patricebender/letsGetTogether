@@ -152,19 +152,6 @@ export class Settings {
     Settings.isUserListSubscribed = true;
   }
 
-  static isListeningForAdminPromotion = false;
-
-  static subscribeToAdminPromotion(socket: Socket) {
-    //only listen if not subscribed
-    if (!Settings.isListeningForAdminPromotion) {
-      socket.on('adminPromotion', () => {
-        console.log("got promotod to admin!")
-        Settings.user.isAdmin = true;
-      })
-    }
-    Settings.isListeningForAdminPromotion = true;
-  }
-
 
   static isListeningForGameUpdates = false;
   static listenForGameUpdates(socket: Socket) {
@@ -236,7 +223,6 @@ export class Settings {
   static user = {
     name: '',
     socketId: undefined,
-    isAdmin: false,
     avatar: '',
     // for surveys etc where we have to wait for others to complete actions before continuing
     hasAnswered: false,
