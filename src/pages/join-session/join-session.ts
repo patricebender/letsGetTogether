@@ -89,7 +89,7 @@ export class JoinSessionPage {
   }
 
   private registerEvents() {
-    let roomJoinEvent = this.onRoomFound().subscribe((data) => {
+    let roomJoinSuccessEvent = this.onRoomFound().subscribe((data) => {
       Settings.isGameStarted = true;
       Settings.game = data['game'];
       this.navCtrl.setRoot(TabsPage);
@@ -99,7 +99,7 @@ export class JoinSessionPage {
       this.showToast('No room found, create one instead!')
     })
 
-    this.events.push(roomJoinEvent, noSuchRoomEvent);
+    this.events.push(roomJoinSuccessEvent, noSuchRoomEvent);
   }
 
 
