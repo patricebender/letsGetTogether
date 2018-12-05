@@ -229,7 +229,8 @@ export class Settings {
     cardsPlayed: 0,
     currentCard: undefined,
     currentCategory: 'none',
-    multiplier: 1
+    multiplier: 1,
+    playerCount: ''
   }
 
   static user = {

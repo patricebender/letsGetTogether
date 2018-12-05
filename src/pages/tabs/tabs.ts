@@ -38,6 +38,10 @@ export class TabsPage {
     return Settings.isGameStarted;
   }
 
+  get playerCount(){
+    return Settings.game.playerCount;
+  }
+
   constructor(public navCtrl: NavController, private toastCtrl: ToastController, private socket: Socket) {
   }
 
