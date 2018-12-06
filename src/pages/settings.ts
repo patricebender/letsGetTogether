@@ -1,5 +1,6 @@
 import {Socket} from "ng-socket-io";
 import {Device} from "@ionic-native/device";
+import {LoadingController, NavController, Platform} from "ionic-angular";
 
 export class Settings {
 
@@ -140,6 +141,33 @@ export class Settings {
     Settings.isListeningForUserChanges = true;
   }
 
+  static isListeningForReconnection = false;
+
+  static listenForReconnection(socket: Socket, plt: Platform, loadingCtrl: LoadingController, navCtrl: NavController) {
+
+    if (!Settings.isListeningForReconnection) {
+      let waiting = loadingCtrl.create({
+        content: 'Warte auf Antwort aus der Brauerei…'
+      });
+
+      // Cordova resume event
+      plt.resume.subscribe(() => {
+        console.log("Application resumed");
+        socket.emit('reconnectRequest', {user: Settings.user, lastRoom: Settings.room});
+        waiting.present();
+      });
+
+      socket.on('userReconnected', () => {
+        console.log("User reconnected, nav to Lobby");
+        waiting.dismiss();
+        navCtrl.setRoot('JoinSessionPage');
+      });
+
+      Settings.isListeningForReconnection = true;
+    }
+
+  }
+
   static isUserListSubscribed = false;
 
   static subscribeUserList(socket: Socket) {
@@ -154,6 +182,7 @@ export class Settings {
 
 
   static isListeningForGameUpdates = false;
+
   static listenForGameUpdates(socket: Socket) {
 
     //only listen if not subscribed
@@ -170,8 +199,9 @@ export class Settings {
 
 
   static isListeningForCard = false;
+
   static listenForCards(socket: Socket) {
-    if(!Settings.isListeningForCard){
+    if (!Settings.isListeningForCard) {
       socket.on('newCard', (data) => {
         console.log("received card: " + JSON.stringify(data['card']));
         Settings.waitForCardResponse = false;
