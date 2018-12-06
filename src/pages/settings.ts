@@ -152,22 +152,8 @@ export class Settings {
     Settings.isUserListSubscribed = true;
   }
 
-  static isListeningForAdminPromotion = false;
-
-  static subscribeToAdminPromotion(socket: Socket) {
-    //only listen if not subscribed
-    if (!Settings.isListeningForAdminPromotion) {
-      socket.on('adminPromotion', () => {
-        console.log("got promotod to admin!")
-        Settings.user.isAdmin = true;
-      })
-    }
-    Settings.isListeningForAdminPromotion = true;
-  }
-
 
   static isListeningForGameUpdates = false;
-
   static listenForGameUpdates(socket: Socket) {
 
     //only listen if not subscribed
@@ -177,6 +163,7 @@ export class Settings {
         Settings.game = data['game'];
         console.log(Settings.user.socketId, JSON.stringify(Settings.game.admin))
       })
+
     }
     Settings.isListeningForGameUpdates = true;
   }
@@ -187,8 +174,6 @@ export class Settings {
     if(!Settings.isListeningForCard){
       socket.on('newCard', (data) => {
         console.log("received card: " + JSON.stringify(data['card']));
-        Settings.game.currentCard = data['card'];
-        Settings.game.currentCategory = data['card'].category;
         Settings.waitForCardResponse = false;
         Settings.receivedCardResponse = false;
       })
@@ -231,13 +216,13 @@ export class Settings {
     cardsPlayed: 0,
     currentCard: undefined,
     currentCategory: 'none',
-    multiplier: 1
+    multiplier: 1,
+    playerCount: ''
   }
 
   static user = {
     name: '',
     socketId: undefined,
-    isAdmin: false,
     avatar: '',
     // for surveys etc where we have to wait for others to complete actions before continuing
     hasAnswered: false,

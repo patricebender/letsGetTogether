@@ -10,13 +10,22 @@ import {NavController} from "ionic-angular";
  * Components.
  */
 @Component({
-  selector: 'start-card',
-  templateUrl: 'start-card.html'
+  selector: 'admin-controls',
+  templateUrl: 'admin-controls.html'
 })
-export class StartCardComponent {
+export class AdminControlsComponent {
 
   get currentCard() {
     return Settings.game.currentCard;
+  }
+
+  get game() {
+    return Settings.game;
+  }
+
+
+  get user() {
+    return Settings.user;
   }
 
   constructor(private socket: Socket, private navCtrl: NavController) {

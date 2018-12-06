@@ -27,6 +27,10 @@ export class SurveyComponent {
     return Settings.receivedCardResponse;
   }
 
+  get playerLeftCount() {
+    return this.survey.playerLeftCount;
+  }
+
   set receivedCardResponse(boolean) {
     Settings.receivedCardResponse = boolean;
   }

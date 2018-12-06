@@ -30,12 +30,20 @@
   border-radius: 30px;
 }
 
+.wrapLine {
+  white-space: pre-line;
+}
+
 .roundedIcon {
   border-radius: 5px;
   padding: 1px;
 }
 
-.roundedSmall {
+.roundedCorners {
+  border-radius: 20px;
+}
+
+.miniAvatar {
   border-radius: 20px;
   padding: 2px;
 }
@@ -48,6 +56,8 @@
   text-align: center;
   font-size: 1.8rem;
   white-space: pre-line;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .centerContent {

@@ -108,6 +108,9 @@ $list-background-color: color($colors, cardColor);
 $list-ios-activated-background-color: lighten(color($colors, cardColor), 10%);
 $list-md-activated-background-color: lighten(color($colors, cardColor), 10%);
 $list-wp-activated-background-color: lighten(color($colors, cardColor), 10%);
+
+$list-md-header-margin-bottom: 0px;
+$list-md-header-border-top: 0px;
 /* End List */
 
 /* Text */

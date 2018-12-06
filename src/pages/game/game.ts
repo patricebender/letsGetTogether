@@ -46,6 +46,8 @@ export class GamePage {
   constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
     Settings.listenForCards(this.socket);
     Settings.listenForSurveyUpdates(socket);
+    // currently needed so that the player count badge in the playerOverview tab is initialized correctly when joining a room
+    this.socket.emit('requestUserList');
   }
 
 

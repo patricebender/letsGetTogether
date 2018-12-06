@@ -4,11 +4,11 @@
 <ion-content class="darkBackground">
   <div ion-fixed padding-top>
 
-    <ion-card >
+    <ion-card  class="roundedCorners">
       <ion-list no-lines>
         <ion-list-header>Dein Profil:</ion-list-header>
         <ion-item tappable="true" (click)="goToUserSettings()">
-          <ion-avatar class="solidBorder roundedSmall" item-start>
+          <ion-avatar class="solidBorder miniAvatar" item-start>
             <img src="../../assets/avatar/{{user.avatar}}">
           </ion-avatar>
           <h2>{{user.name}}</h2>
@@ -18,10 +18,10 @@
       </ion-list>
     </ion-card>
 
-    <ion-card>
+    <ion-card class="roundedCorners">
 
 
-     <ion-list no-lines>
+     <ion-list  no-lines>
        <ion-list-header>Spiel beitreten:</ion-list-header>
        <ion-item padding-bottom>
          <ion-label stacked>Raum Name:</ion-label>
@@ -36,7 +36,7 @@
 
     </ion-card>
 
-    <ion-card>
+    <ion-card class="roundedCorners">
       <ion-item padding-vertical="" tappable="true" (click)="goToCreateRoom()">
         <ion-label item-start>Raum erstellen</ion-label>
         <ion-icon item-end name="arrow-forward"></ion-icon>

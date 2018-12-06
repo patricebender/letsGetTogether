@@ -16,7 +16,7 @@ import {Observable} from "rxjs";
 export class GuessComponent {
 
 
-  userAnswer: number;
+  userAnswer = ''
 
   events = [];
 
@@ -46,6 +46,10 @@ export class GuessComponent {
 
   get guess() {
     return Settings.game.currentCard;
+  }
+
+  get playerLeftCount() {
+    return this.guess.playerLeftCount;
   }
 
 
@@ -89,6 +93,7 @@ export class GuessComponent {
   emitAnswer() {
     this.waitForCardResponse = true;
     this.socket.emit('guessAnswer', {guess: this.guess, answer: this.userAnswer})
+    this.userAnswer = ''
   }
 
 

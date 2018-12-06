@@ -1,0 +1,21 @@
+<ion-card class="rounded">
+  <ion-title style="text-align: center" padding>
+    <div>
+      Game Over
+    </div>
+    <h2 class="wrapLine">
+      {{game.currentCard.reason}}
+      {{game.admin.socketId === user.socketId ? "Du kannst " : game.admin.name + " kann"}} ein neues Spiel starten!
+    </h2>
+
+  </ion-title>
+</ion-card>
+
+<ion-row padding-top justify-content-center>
+  <button (click)="startNewGame()" *ngIf="game.admin.socketId === user.socketId" ion-button color="cardColor"  style="text-transform: none" class="solidBorder rounded" large>
+    <div padding-horizontal>Neues Spiel starten</div>
+    <ion-icon name="play" color="accentGreen"></ion-icon>
+  </button>
+</ion-row>
+
+
