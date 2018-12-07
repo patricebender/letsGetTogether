@@ -163,6 +163,12 @@ export class Settings {
         navCtrl.setRoot('JoinSessionPage');
       });
 
+      socket.on('reconnectedToGame', (data) => {
+        console.log("User reconnected to Game!");
+        Settings.game = data.game;
+        waiting.dismiss();
+      });
+
       Settings.isListeningForReconnection = true;
     }
 
