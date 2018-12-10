@@ -1,6 +1,7 @@
 import {Socket} from "ng-socket-io";
 import {Device} from "@ionic-native/device";
 import {LoadingController, NavController, Platform} from "ionic-angular";
+import {TapticEngine} from "@ionic-native/taptic-engine";
 
 export class Settings {
 
@@ -206,9 +207,10 @@ export class Settings {
 
   static isListeningForCard = false;
 
-  static listenForCards(socket: Socket) {
+  static listenForCards(socket: Socket, taptic: TapticEngine) {
     if (!Settings.isListeningForCard) {
       socket.on('newCard', (data) => {
+        taptic.impact({ style: 'medium' });
         console.log("received card: " + JSON.stringify(data['card']));
         Settings.waitForCardResponse = false;
         Settings.receivedCardResponse = false;
