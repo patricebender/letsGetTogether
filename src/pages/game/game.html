@@ -9,8 +9,6 @@
 
   <ion-card class="rounded">
     <ion-list padding-bottom no-lines>
-
-
       <ion-row>
 
         <ion-item padding-vertical tappable="true" (click)="goToUserSettings()">
@@ -27,33 +25,25 @@
 
       <ion-row justify-content-center>
         <ion-col style="text-align: center">
-          <p>Schlücke:</p>
-          <ion-badge padding-horizontal>{{user.sips}}</ion-badge>
-        </ion-col>
-
-        <ion-col style="text-align: center">
 
           <p>Multiplikator: </p>
           <ion-badge padding-horizontal>x {{user.multiplier}}</ion-badge>
 
         </ion-col>
-      </ion-row>
-      <ion-row justify-content-center>
+        <ion-col style="text-align: center">
+          <p>Schlücke:</p>
+          <ion-badge padding-horizontal>{{user.sips}}</ion-badge>
+        </ion-col>
         <ion-col style="text-align: center">
           <p>Karte:</p>
           <ion-badge padding-horizontal>{{game.cardsPlayed}} / {{game.cardsPerGame}}</ion-badge>
 
         </ion-col>
 
-        <ion-col style="text-align: center">
 
-          <p> Spiel Multiplikator:</p>
-          <ion-badge padding-horizontal>x {{game.multiplier}}</ion-badge>
-
-        </ion-col>
       </ion-row>
 
-      <admin-controls></admin-controls>
+
     </ion-list>
   </ion-card>
 
@@ -63,9 +53,19 @@
     </survey>
     <guess class="fullWidth" *ngIf="currentCardCategory === 'guess'">
     </guess>
+
+    <quiz class="fullWidth" *ngIf="currentCardCategory === 'quiz'"></quiz>
+
   </div>
 
   <game-over *ngIf="game.isOver">
 
   </game-over>
+
 </ion-content>
+
+<ion-footer *ngIf="user.socketId === game.admin.socketId" no-border>
+    <ion-card class="rounded">
+      <admin-controls></admin-controls>
+    </ion-card>
+</ion-footer>

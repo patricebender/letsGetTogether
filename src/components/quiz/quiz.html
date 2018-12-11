@@ -1,0 +1,75 @@
+<!-- Generated template for the SurveyComponent component -->
+
+<ion-card class="rounded" padding-vertical>
+  <ion-title>
+    <div class="cardTitle">"{{quiz.question}}"</div>
+  </ion-title>
+
+
+  <ion-row padding justify-content-center>
+    <ul class="answerContainer">
+      <li *ngFor="let option of quiz.options">
+
+        <button [disabled]="waitForCardResponse || quiz.closed || receivedCardResponse"
+                style="text-transform: none; font-size: 1.5rem"
+                ion-button large color="cardColor"
+                class="rounded solidBorder answer" (click)="emitAnswer(option)"
+                ngClass="{{userAnswer === option.text? 'userChoice' : ''}} ">
+
+          <ion-label class="wrapLine" padding-vertical>{{ quiz.closed || receivedCardResponse ? option.isCorrect ? '✅' :
+            '❌' : ''}} {{option.text}}
+          </ion-label>
+        </button>
+
+
+      </li>
+    </ul>
+    <div *ngIf="quiz.answerNote" class="answerNoteContainer" style="text-align: center">
+      <p class="answerNote" *ngIf="receivedResult || quiz.closed">
+        ➡️{{quiz.answerNote}}
+      </p>
+    </div>
+  </ion-row>
+  <ion-row *ngIf="waitForCardResponse" padding justify-content-center>
+    <p padding-horizontal>Du hast in {{answerTime / 1000}} Sekunden geantwortet.</p>
+    <p padding-horizontal>Warte auf {{playerLeftCount === 1 ? " einen anderen Spieler" : playerLeftCount + " andereSpieler"}}</p>
+    <ion-spinner color="accentGreen"></ion-spinner>
+  </ion-row>
+
+
+  <ion-list *ngIf="receivedResult || quiz.closed" justify-content-center>
+    <ion-item *ngFor="let rank of ranking">
+      <div justify-content-start>
+        <ion-grid class="answerGrid">
+          <ion-row align-items-center>
+            <ion-col>
+              <div>
+                {{rank.answer.isCorrect ? '✅' : '❌'}} ⏱{{rank.time / 1000}} s<br>
+              </div>
+            </ion-col>
+            <ion-col col-6>
+              <div margin-left>
+                {{rank.player.socketId === user.socketId ? 'Du sagst:' : rank.player.name.substring(0,
+                rank.player.name.indexOf(' ') !== -1 ? rank.player.name.indexOf(' ') : rank.player.name.length) + '
+                sagt:
+                '}}
+                <br> <b>{{rank.answer.text }}</b>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                {{rank.sips}}x🍻
+              </div>
+            </ion-col>
+          </ion-row>
+
+
+        </ion-grid>
+
+
+      </div>
+    </ion-item>
+  </ion-list>
+
+
+</ion-card>

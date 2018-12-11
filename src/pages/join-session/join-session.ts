@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, ToastController} from 'ionic-angular';
+import {AlertController, IonicPage, LoadingController, NavController, Platform, ToastController} from 'ionic-angular';
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 import {Settings} from "../settings";
@@ -24,8 +24,9 @@ export class JoinSessionPage {
   events = [];
 
 
-  constructor(private device: Device, public toastCtrl: ToastController, public navCtrl: NavController, private socket: Socket, public alertCtrl: AlertController) {
+  constructor(private device: Device, public toastCtrl: ToastController, public navCtrl: NavController, private socket: Socket, public alertCtrl: AlertController,public plt: Platform, public loadingCtrl: LoadingController) {
   console.log(this.device.platform)
+    Settings.listenForReconnection(socket, plt, loadingCtrl, navCtrl);
   }
 
 

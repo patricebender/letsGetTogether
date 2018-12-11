@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
+import {Content, IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
@@ -24,7 +24,7 @@ export class TabsPage {
 
   gameRoot = 'GamePage'
   playerOverviewRoot = 'PlayerOverviewPage';
-  gameOverviewRoot = 'GameOverviewPage'
+
 
   @ViewChild('myTabs') tabRef: Tabs;
 
@@ -58,20 +58,27 @@ export class TabsPage {
   private showToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000
+      duration: 2000,
+      position: 'top',
     });
-    toast.setPosition("top");
+
     toast.present();
   }
 
   private registerEvents() {
 
     let userChangeEvent = this.onUserChange().subscribe((data) => {
-      this.showToast(data['user'].name + " has " + data['event'] + " the room")
+      this.showToast(data['user'].name + " has " + data['event'] + " the room");
+      this.tabRef.resize();
+    });
+
+    let sipEvent = this.onSipReceived().subscribe((data) => {
+      let sipPenalty = data['sips'];
+      this.showToast( "🍺 Du musst " + (sipPenalty > 1 ? sipPenalty + " x " : " einen ") + "trinken! 🍺");
     });
 
     Settings.listenForGameUpdates(this.socket);
-    this.events.push(userChangeEvent);
+    this.events.push(userChangeEvent, sipEvent);
 
   }
 
@@ -82,4 +89,13 @@ export class TabsPage {
       });
     });
   }
+
+  private onSipReceived() {
+    return new Observable((observer) => {
+      this.socket.on('sip', (data) => {
+        observer.next(data);
+      });
+    });
+  }
+
 }

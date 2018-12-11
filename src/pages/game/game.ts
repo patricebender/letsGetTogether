@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Socket} from "ng-socket-io";
 import {Settings} from "../settings";
+import {TapticEngine} from "@ionic-native/taptic-engine";
 
 /**
  * Generated class for the GamePage page.
@@ -43,9 +44,9 @@ export class GamePage {
   }
 
 
-  constructor(public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
-    Settings.listenForCards(this.socket);
-    Settings.listenForSurveyUpdates(socket);
+  constructor(public taptic: TapticEngine, public toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams, private socket: Socket) {
+    Settings.listenForCards(this.socket, this.taptic);
+    Settings.listenForSurveyUpdates(this.socket);
     // currently needed so that the player count badge in the playerOverview tab is initialized correctly when joining a room
     this.socket.emit('requestUserList');
   }
