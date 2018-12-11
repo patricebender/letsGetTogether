@@ -1,0 +1,53 @@
+quiz {
+  .wrongAnswer {
+    background-color: red;
+  }
+
+  .correctAnswer {
+    background-color: green;
+  }
+
+  .userChoice {
+    border: solid 5px color($colors, accentGreen);
+
+  }
+
+  .answerNoteContainer {
+    text-align: center;
+    line-height: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  .answerContainer{
+    width: 100%;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+    padding-left: 0px;
+  }
+
+  .answer {
+    flex: 1 0 40%;
+    height: auto;
+    width: 100%;
+  }
+
+
+  .label {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .rankRow {
+    width: 100%;
+    display: flex;
+
+    > div{
+      flex-grow: 1;
+    }
+  }
+
+
+}

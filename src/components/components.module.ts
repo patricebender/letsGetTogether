@@ -5,13 +5,15 @@ import {IonicModule} from "ionic-angular";
 import { AdminControlsComponent } from './admin-controls/admin-controls';
 import { GuessComponent } from './guess/guess';
 import { GameOverComponent } from './game-over/game-over';
+import { QuizComponent } from './quiz/quiz';
 @NgModule({
 	declarations: [SurveyComponent,
     SurveyComponent,
     WaitForItComponent,
     AdminControlsComponent,
     GuessComponent,
-    GameOverComponent],
+    GameOverComponent,
+    QuizComponent],
 	imports: [
     IonicModule
   ],
@@ -20,6 +22,7 @@ import { GameOverComponent } from './game-over/game-over';
     WaitForItComponent,
     AdminControlsComponent,
     GuessComponent,
-    GameOverComponent]
+    GameOverComponent,
+    QuizComponent]
 })
 export class ComponentsModule {}

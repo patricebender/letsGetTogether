@@ -47,24 +47,25 @@
     </ion-list>
   </ion-card>
 
-  <div *ngIf="!game.isOver" class="cardContainer">
+  <div *ngIf="!game.isOver">
     <wait-for-it padding-top class="fullWidth" *ngIf="(game.currentCard | json) == '{}'"></wait-for-it>
-    <survey class="fullWidth card" *ngIf="currentCardCategory === 'survey'">
+    <survey class="fullWidth" *ngIf="currentCardCategory === 'survey'">
     </survey>
-    <guess class="fullWidth card" *ngIf="currentCardCategory === 'guess'">
+    <guess class="fullWidth" *ngIf="currentCardCategory === 'guess'">
     </guess>
+
+    <quiz class="fullWidth" *ngIf="currentCardCategory === 'quiz'"></quiz>
+
   </div>
 
-  <game-over style="flex-grow: 3;" *ngIf="game.isOver">
+  <game-over *ngIf="game.isOver">
 
   </game-over>
 
 </ion-content>
 
-<ion-footer *ngIf="user.socketId === game.admin.socketId && !game.isOver" no-border>
-  <ion-toolbar>
+<ion-footer *ngIf="user.socketId === game.admin.socketId" no-border>
     <ion-card class="rounded">
       <admin-controls></admin-controls>
     </ion-card>
-  </ion-toolbar>
 </ion-footer>
