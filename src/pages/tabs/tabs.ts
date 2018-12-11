@@ -58,7 +58,7 @@ export class TabsPage {
   private showToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 2000,
+      duration: 3000,
       position: 'top',
     });
 

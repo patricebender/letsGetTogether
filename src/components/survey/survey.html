@@ -21,7 +21,7 @@
   </ion-row>
   <ion-row *ngIf="receivedCardResponse || survey.closed" padding justify-content-center>
     <p padding-horizontal>{{losers.length > 0 ? 'Hier sind die Verlierer: ' : 'Meh. Dieses mal trinkt keiner :/'}} </p>
-    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'DU' : loser.name}}</div>
+    <div *ngFor="let loser of losers">{{loser.name === user.name ? 'Du ' : loser.name + " "}}</div>
   </ion-row>
 
 
