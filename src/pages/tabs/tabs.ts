@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Content, IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
+import { IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";

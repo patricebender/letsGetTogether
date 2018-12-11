@@ -2,7 +2,6 @@ import {Socket} from "ng-socket-io";
 import {Device} from "@ionic-native/device";
 import {LoadingController, NavController, Platform} from "ionic-angular";
 import {TapticEngine} from "@ionic-native/taptic-engine";
-import {timer} from "rxjs/observable/timer";
 
 export class Settings {
 
