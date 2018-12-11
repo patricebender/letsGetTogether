@@ -2,6 +2,7 @@ import {Socket} from "ng-socket-io";
 import {Device} from "@ionic-native/device";
 import {LoadingController, NavController, Platform} from "ionic-angular";
 import {TapticEngine} from "@ionic-native/taptic-engine";
+import {timer} from "rxjs/observable/timer";
 
 export class Settings {
 
@@ -19,28 +20,16 @@ export class Settings {
   static categories = [{
     name: "Umfrage",
     type: "surveys",
-    enabled: true
+    enabled: true,
   }, {
     name: "Schätzen",
     type: "guess",
-    enabled: true
+    enabled: true,
   }, {
-    name: "Aktionen",
-    enabled: false
-  },
-    {
-      name: "Flüche",
-      enabled: false
-    }, {
-      name: "Duell",
-      enabled: false
-    }, {
-      name: "Quicktime",
-      enabled: false
-    }, {
-      name: "Quiz",
-      enabled: false
-    }
+    name: "Quiz",
+    type: "quiz",
+    enabled: true,
+  }
   ]
 
   static get selectedCategories() {
@@ -142,6 +131,7 @@ export class Settings {
     Settings.isListeningForUserChanges = true;
   }
 
+
   static isListeningForReconnection = false;
 
   static listenForReconnection(socket: Socket, plt: Platform, loadingCtrl: LoadingController, navCtrl: NavController) {
@@ -206,15 +196,25 @@ export class Settings {
 
 
   static isListeningForCard = false;
+  static timeSinceNewCard = 0;
 
   static listenForCards(socket: Socket, taptic: TapticEngine) {
+
     if (!Settings.isListeningForCard) {
       socket.on('newCard', (data) => {
-        taptic.impact({ style: 'medium' });
+        taptic.impact({style: 'medium'});
+        Settings.timeSinceNewCard = 0;
+
         console.log("received card: " + JSON.stringify(data['card']));
         Settings.waitForCardResponse = false;
         Settings.receivedCardResponse = false;
+
       })
+
+      setInterval(() => {
+        Settings.timeSinceNewCard += 100;
+      }, 100);
+
       Settings.isListeningForCard = true;
     }
   }
