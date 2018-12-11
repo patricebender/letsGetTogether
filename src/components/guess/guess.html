@@ -52,7 +52,7 @@
           <ion-col col-6 margin-left>
             <div>
               {{rank.player.socketId === user.socketId ? 'Du liegst:' : rank.player.name + ' liegt:'}}
-              <br> <b>{{rank.difference > 0 ? rank.difference + guess.unit + " daneben" : "genau richtig 🎯"}} </b>
+              <br> <b>{{rank.difference > 0 ? rank.difference + " " + guess.unit + " daneben" : "genau richtig 🎯"}} </b>
             </div>
           </ion-col>
           <ion-col>
