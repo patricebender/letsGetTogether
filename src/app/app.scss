@@ -52,6 +52,13 @@
   color: darken(white, 20%);
 }
 
+.answerNote {
+  white-space: pre-line;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: darken( white, 30%);
+}
+
 .cardTitle {
   text-align: center;
   font-size: 1.8rem;
