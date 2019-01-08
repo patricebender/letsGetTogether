@@ -19,14 +19,18 @@ export class Settings {
   static categories = [{
     name: "Umfrage",
     type: "surveys",
-    enabled: true,
+    enabled: false,
   }, {
     name: "Schätzen",
     type: "guess",
-    enabled: true,
+    enabled: false,
   }, {
     name: "Quiz",
     type: "quiz",
+    enabled: false,
+  },{
+    name: "Challenge",
+    type: "challenge",
     enabled: true,
   }
   ]
@@ -251,7 +255,7 @@ export class Settings {
     themes: [],
     cardsPerGame: 25,
     cardsPlayed: 0,
-    currentCard: undefined,
+    currentCard: {},
     currentCategory: 'none',
     multiplier: 1,
     playerCount: ''
@@ -259,7 +263,7 @@ export class Settings {
 
   static user = {
     name: '',
-    socketId: undefined,
+    socketId: {},
     avatar: '',
     // for surveys etc where we have to wait for others to complete actions before continuing
     hasAnswered: false,
