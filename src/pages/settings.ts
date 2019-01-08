@@ -19,19 +19,19 @@ export class Settings {
   static categories = [{
     name: "Umfrage",
     type: "surveys",
-    enabled: false,
+    enabled: true,
   }, {
     name: "Schätzen",
     type: "guess",
-    enabled: false,
+    enabled: true,
   }, {
     name: "Quiz",
     type: "quiz",
-    enabled: false,
+    enabled: true,
   },{
     name: "Challenge",
     type: "challenge",
-    enabled: true,
+    enabled: false,
   }
   ]
 
