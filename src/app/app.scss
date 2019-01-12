@@ -89,6 +89,10 @@
   background-color: color($colors, dark);
 }
 
+.cardBackground {
+  background-color: color($colors, cardColor);
+}
+
 @keyframes color-transition {
   0% {
     background-color: #76A6AA;
