@@ -5,47 +5,36 @@
   Ionic pages and navigation.
 -->
 
+<ion-header>
+  <ion-toolbar no-border>
+
+    <ion-item class="darkBackground">
+      <ion-avatar tappable="true" (click)="goToUserSettings()" class="solidBorder miniAvatar" item-start>
+        <img src="../../assets/avatar/{{user.avatar}}">
+      </ion-avatar>
+      <h3 padding-bottom>{{user.name}} @ {{room}}
+      </h3>
+      <div class="gameInfoRow">
+        <div>
+          <ion-badge>{{game.cardsPlayed}} / {{game.cardsPerGame}} ⏰</ion-badge>
+        </div>
+
+        <div>
+          <ion-badge>{{user.sips}} x 🍺</ion-badge>
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content class="darkBackground">
 
-  <ion-card class="rounded">
-    <ion-list padding-bottom no-lines>
-      <ion-row>
-
-        <ion-item padding-vertical tappable="true" (click)="goToUserSettings()">
-          <ion-avatar class="solidBorder miniAvatar" item-start>
-            <img src="../../assets/avatar/{{user.avatar}}">
-          </ion-avatar>
-          <h2>{{user.name}}</h2>
-          <p>{{room}}</p>
-          <ion-icon item-end name="arrow-forward"></ion-icon>
-        </ion-item>
-
-      </ion-row>
-
-
-      <ion-row justify-content-center>
-        <ion-col style="text-align: center">
-
-          <p>Multiplikator: </p>
-          <ion-badge padding-horizontal>x {{user.multiplier}}</ion-badge>
-
-        </ion-col>
-        <ion-col style="text-align: center">
-          <p>Schlücke:</p>
-          <ion-badge padding-horizontal>{{user.sips}}</ion-badge>
-        </ion-col>
-        <ion-col style="text-align: center">
-          <p>Karte:</p>
-          <ion-badge padding-horizontal>{{game.cardsPlayed}} / {{game.cardsPerGame}}</ion-badge>
-
-        </ion-col>
-
-
-      </ion-row>
-
-
-    </ion-list>
-  </ion-card>
 
   <div *ngIf="!game.isOver">
     <wait-for-it padding-top class="fullWidth" *ngIf="(game.currentCard | json) == '{}'"></wait-for-it>
@@ -67,7 +56,7 @@
 </ion-content>
 
 <ion-footer *ngIf="user.socketId === game.admin.socketId" no-border>
-    <ion-card class="rounded">
-      <admin-controls></admin-controls>
-    </ion-card>
+  <ion-card class="rounded">
+    <admin-controls></admin-controls>
+  </ion-card>
 </ion-footer>

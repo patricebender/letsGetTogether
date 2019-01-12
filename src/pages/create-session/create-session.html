@@ -55,12 +55,13 @@
             <div class="noLineBreak"><p *ngFor="let category of selectedCategories">{{category.name }} &nbsp; </p></div>
             <ion-icon item-end name="arrow-forward"></ion-icon>
           </ion-item>
-          <ion-item tappable="true" (click)="chooseThemes()">
+          <!--<ion-item tappable="true" (click)="chooseThemes()">
             <h3 margin-bottom stacked>Themen</h3>
             <div class="noLineBreak"><p *ngFor="let theme of selectedThemes">{{theme.name }} &nbsp; </p></div>
 
             <ion-icon item-end name="arrow-forward"></ion-icon>
-          </ion-item>
+          </ion-item>-->
+          
           <ion-row padding-top justify-content-center>
             <button (click)="createRoomRequest()" ion-button color="cardColor"
                     [disabled]="!room || selectedCategories.length === 0" class="solidBorder rounded" large>

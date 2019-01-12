@@ -8,13 +8,17 @@
 <ion-content class="darkBackground">
   <ion-list padding>
     <ion-item style="font-size: 1.5rem" margin-bottom class="rounded" no-lines *ngFor="let player of players">
-      <ion-avatar class="roundedSmall" item-start><img src="../../assets/avatar/{{player.avatar}}">
+      <ion-avatar class="solidBorder miniAvatar" item-start><img src="../../assets/avatar/{{player.avatar}}">
       </ion-avatar>
-      <h2>{{player.name}}
-        <ion-icon item-end *ngIf="player.socketId === game.admin.socketId" color="accentGreen" name="star"></ion-icon>
-      </h2>
-      <ion-row justify-content-center>
-        <ion-col>
+      <ion-item no-padding>
+        <h2>{{player.name}}
+        </h2>
+        <ion-badge style="margin-right: 0" item-end *ngIf="player.socketId === game.admin.socketId">Admin</ion-badge>
+
+      </ion-item>
+
+      <ion-row style="flex-flow: row">
+        <ion-col style="padding-left: 0;">
           <p>Schlücke:
             <ion-badge>{{player.sips}}</ion-badge>
           </p>
