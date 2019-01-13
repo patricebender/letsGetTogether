@@ -2,7 +2,6 @@ import {Socket} from "ng-socket-io";
 import {Device} from "@ionic-native/device";
 import {LoadingController, NavController, Platform} from "ionic-angular";
 import {TapticEngine} from "@ionic-native/taptic-engine";
-import {timer} from "rxjs/observable/timer";
 
 export class Settings {
 
@@ -29,6 +28,10 @@ export class Settings {
     name: "Quiz",
     type: "quiz",
     enabled: true,
+  },{
+    name: "Challenge",
+    type: "challenge",
+    enabled: false,
   }
   ]
 
@@ -252,7 +255,7 @@ export class Settings {
     themes: [],
     cardsPerGame: 25,
     cardsPlayed: 0,
-    currentCard: undefined,
+    currentCard: {},
     currentCategory: 'none',
     multiplier: 1,
     playerCount: ''
@@ -260,7 +263,7 @@ export class Settings {
 
   static user = {
     name: '',
-    socketId: undefined,
+    socketId: {},
     avatar: '',
     // for surveys etc where we have to wait for others to complete actions before continuing
     hasAnswered: false,
