@@ -6,7 +6,6 @@ import { AdminControlsComponent } from './admin-controls/admin-controls';
 import { GuessComponent } from './guess/guess';
 import { GameOverComponent } from './game-over/game-over';
 import { QuizComponent } from './quiz/quiz';
-import { ChallengeComponent } from './challenge/challenge';
 @NgModule({
 	declarations: [SurveyComponent,
     SurveyComponent,
@@ -14,8 +13,7 @@ import { ChallengeComponent } from './challenge/challenge';
     AdminControlsComponent,
     GuessComponent,
     GameOverComponent,
-    QuizComponent,
-    ChallengeComponent],
+    QuizComponent],
 	imports: [
     IonicModule
   ],
@@ -25,7 +23,6 @@ import { ChallengeComponent } from './challenge/challenge';
     AdminControlsComponent,
     GuessComponent,
     GameOverComponent,
-    QuizComponent,
-    ChallengeComponent]
+    QuizComponent]
 })
 export class ComponentsModule {}

@@ -15,9 +15,9 @@ import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
 import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avatar.module";
 
 /* Digital Ocean */
-//const config: SocketIoConfig = { url:  'api.getto.patrice.codes', options: {}};
+//const config: SocketIoConfig = { url:  'http://165.227.151.58:3001', options: {}};
 
-const config: SocketIoConfig = {url: 'http://localhost:3001', options: {}};
+const config: SocketIoConfig = {url: 'localhost:3001', options: {}};
 
 /* Heidelberg */
 //const config: SocketIoConfig = {url: '192.168.2.102:3001', options: {}};

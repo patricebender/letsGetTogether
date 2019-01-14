@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
+import {Content, IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
 import {Settings} from "../settings";
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
@@ -58,7 +58,7 @@ export class TabsPage {
   private showToast(msg) {
     let toast = this.toastCtrl.create({
       message: msg,
-      duration: 3000,
+      duration: 2000,
       position: 'top',
     });
 
