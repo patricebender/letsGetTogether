@@ -29,7 +29,7 @@ export class ChallengeComponent {
   }
 
   get playerLeftCount() {
-    return Settings.game.currentCard.playerLeftCount;
+    return Settings.game.currentCard['playerLeftCount'];
   }
 
   get waitForCardResponse() {

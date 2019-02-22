@@ -39,7 +39,6 @@ export class UserPage {
   }
 
   set userName(name) {
-    console.log(name)
     Settings.user.name = name;
   }
 

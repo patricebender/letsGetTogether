@@ -46,6 +46,7 @@
 .miniAvatar {
   border-radius: 20px;
   padding: 2px;
+  border: solid 1px color($colors, accentGreen);
 }
 
 .alert-title {
@@ -56,11 +57,15 @@
   white-space: pre-line;
   padding-left: 1rem;
   padding-right: 1rem;
-  color: darken( white, 30%);
+  color: darken(white, 30%);
 }
 
 .centerText {
   text-align: center;
+}
+
+.darkGreen {
+  color: color($colors, darkGreen);
 }
 
 .cardTitle {
@@ -77,6 +82,8 @@
   align-items: center;
 }
 
+
+
 .solidBorder {
   border: solid 1px color($colors, accentGreen);
 }
@@ -91,6 +98,10 @@
 
 .cardBackground {
   background-color: color($colors, cardColor);
+}
+
+.redBackground {
+  background-color: darken(red, 25%);
 }
 
 @keyframes color-transition {

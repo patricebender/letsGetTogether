@@ -14,4 +14,29 @@ page-game {
     padding-right: 8px;
     border: none;
   }
+
+  .curseBadge {
+    position: absolute;
+    top: -1rem;
+    right: -0.2rem;
+    padding-left: 2px;
+    padding-right: 2px;
+
+    & ~ ion-icon {
+      margin-right: 0.6rem;
+    }
+  }
+
+
+
+  .gameInfoCol {
+    display: flex;
+    flex-flow: column;
+    align-items: baseline;
+
+    > ion-badge {
+      width: 8rem;
+    }
+  }
+
 }

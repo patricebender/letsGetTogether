@@ -1,31 +1,24 @@
 import {ViewController} from "ionic-angular";
 import {Component} from "@angular/core";
 import {Settings} from "../../settings";
-import {Socket} from "ng-socket-io";
 
 @Component({
   template: `
     <ion-list>
-      <button  ion-item *ngFor="let avatar of avatarFileNames" (click)="closeAndChooseAvatar(avatar)">
-        <ion-avatar >
-          <img src="../../assets/avatar/{{avatar}}">
-        </ion-avatar>
-      </button>
+      <ion-row *ngFor="let curse of curses" >
+        <div padding *ngIf="curse.category === 'multiplierCurse'">
+         Dein Multiplikator ist noch für <b>{{curse.roundsLeft === 1? 'eine Runde' : curse.roundsLeft + ' Runden'}}</b> um <b>{{curse.multiplier}}</b> erhöht. 
+        </div>
+      </ion-row>
     </ion-list>
   `
 })
-export class ChooseAvatarPage {
-  constructor(public viewCtrl: ViewController, private socket: Socket) {
+export class CurseOverviewPage {
+  constructor(public viewCtrl: ViewController) {
   }
 
-  closeAndChooseAvatar(avatarFile) {
 
-    this.socket.emit('avatarChanged', {newAvatar: avatarFile});
-    Settings.user.avatar = avatarFile;
-    this.viewCtrl.dismiss();
-  }
-
-  get avatarFileNames() {
-    return Settings.avatarFileNames;
+  get curses() {
+    return Settings.user.curses;
   }
 }

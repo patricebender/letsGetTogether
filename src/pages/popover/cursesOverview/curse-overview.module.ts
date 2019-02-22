@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 
-import { ChooseAvatarPage } from './chooseAvatar';
+import { CurseOverviewPage } from './curse-overview';
 import {IonicPageModule} from "ionic-angular";
 
 @NgModule({
   declarations: [
-    ChooseAvatarPage,
+    CurseOverviewPage,
   ],
   imports: [
-    IonicPageModule.forChild(ChooseAvatarPage),
+    IonicPageModule.forChild(CurseOverviewPage),
   ],
   entryComponents: [
-    ChooseAvatarPage,
+    CurseOverviewPage,
   ]
 })
-export class ChooseAvatarPageModule {}
+export class CurseOverviewPageModule {}

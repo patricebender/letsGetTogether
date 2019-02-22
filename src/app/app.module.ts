@@ -13,11 +13,12 @@ import {TabsModule} from "../pages/tabs/tabs.module";
 import {UserPageModule} from "../pages/user/user.module";
 import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
 import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avatar.module";
+import {CurseOverviewPageModule} from "../pages/popover/cursesOverview/curse-overview.module";
 
 /* Digital Ocean */
-//const config: SocketIoConfig = { url:  'api.getto.patrice.codes', options: {}};
+const config: SocketIoConfig = { url:  'https://api.getto.patrice.codes', options: {}};
 
-const config: SocketIoConfig = {url: 'http://localhost:3001', options: {}};
+//const config: SocketIoConfig = {url: 'http://localhost:3001', options: {}};
 
 /* Heidelberg */
 //const config: SocketIoConfig = {url: '192.168.2.102:3001', options: {}};
@@ -34,7 +35,8 @@ const config: SocketIoConfig = {url: 'http://localhost:3001', options: {}};
     TabsModule,
     UserPageModule,
     JoinSessionPageModule,
-    ChooseAvatarPageModule
+    ChooseAvatarPageModule,
+    CurseOverviewPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

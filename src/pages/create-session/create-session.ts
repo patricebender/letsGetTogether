@@ -50,6 +50,10 @@ export class CreateSessionPage {
     return Settings.user;
   }
 
+  get game() {
+    return Settings.game;
+  }
+
   constructor(private device: Device, private toastCtrl: ToastController, private socket: Socket, private alertCtrl: AlertController, private navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -137,7 +141,8 @@ export class CreateSessionPage {
       categories: this.selectedCategories,
       themes: this.selectedThemes,
       cardsPerGame: this.cardsPerGame,
-      cardsPlayed: 0
+      cardsPlayed: 0,
+      curseEnabled: this.game.curseEnabled,
     });
   }
 

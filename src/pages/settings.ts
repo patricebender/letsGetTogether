@@ -94,7 +94,12 @@ export class Settings {
     'Carla Cognac',
     'Karl Korn',
     'Portwein Peter',
-    'Naughty Norbert'
+    'Naughty Norbert',
+    'Duff Beer David',
+    'Anis Alex',
+    'Vedat Vodka',
+    'Promille Pascal',
+    'Lorenz Likör'
   ]
 
 
@@ -249,6 +254,7 @@ export class Settings {
   static receivedCardResponse = false;
 
   static game = {
+
     players: [],
     admin: {},
     categories: [],
@@ -258,7 +264,8 @@ export class Settings {
     currentCard: {},
     currentCategory: 'none',
     multiplier: 1,
-    playerCount: ''
+    playerCount: '',
+    curseEnabled: false,
   }
 
   static user = {
@@ -268,7 +275,8 @@ export class Settings {
     // for surveys etc where we have to wait for others to complete actions before continuing
     hasAnswered: false,
     sips: 0,
-    multiplier: 1
+    multiplier: 1,
+    curses: [],
   }
 
 

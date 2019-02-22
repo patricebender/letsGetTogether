@@ -25,11 +25,11 @@ export class QuizComponent {
   }
 
   get ranking() {
-    return Settings.game.currentCard.ranking;
+    return Settings.game.currentCard['ranking'];
   }
 
   set ranking(rankarray) {
-    Settings.game.currentCard.ranking = rankarray;
+    Settings.game.currentCard['ranking'] = rankarray;
   }
 
   get receivedCardResponse() {
@@ -37,7 +37,7 @@ export class QuizComponent {
   }
 
   get playerLeftCount() {
-    return this.quiz.playerLeftCount;
+    return this.quiz['playerLeftCount'];
   }
 
   set receivedCardResponse(boolean) {

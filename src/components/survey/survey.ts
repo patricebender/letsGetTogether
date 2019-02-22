@@ -28,7 +28,7 @@ export class SurveyComponent {
   }
 
   get playerLeftCount() {
-    return this.survey.playerLeftCount;
+    return this.survey['playerLeftCount'];
   }
 
   set receivedCardResponse(boolean) {

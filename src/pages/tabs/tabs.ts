@@ -74,6 +74,7 @@ export class TabsPage {
 
     let sipEvent = this.onSipReceived().subscribe((data) => {
       let sipPenalty = data['sips'];
+      console.log(JSON.stringify(sipPenalty))
       this.showToast( "🍺 Du musst " + (sipPenalty > 1 ? sipPenalty + " x " : " einen ") + "trinken! 🍺");
     });
 

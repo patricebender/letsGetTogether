@@ -8,7 +8,7 @@
 <ion-content class="darkBackground">
   <ion-list padding>
     <ion-item style="font-size: 1.5rem" margin-bottom class="rounded" no-lines *ngFor="let player of players">
-      <ion-avatar class="solidBorder miniAvatar" item-start><img src="../../assets/avatar/{{player.avatar}}">
+      <ion-avatar class="miniAvatar" item-start><img src="../../assets/avatar/{{player.avatar}}">
       </ion-avatar>
       <ion-item no-padding>
         <h2>{{player.name}}
@@ -26,7 +26,7 @@
         </ion-col>
         <ion-col>
           <p>Multiplikator:
-            <ion-badge>x {{player.multiplier}}</ion-badge>
+            <ion-badge ngClass="{{player.multiplier > 1 ? 'redBackground' : ''}}">x {{player.multiplier}}</ion-badge>
           </p>
 
 

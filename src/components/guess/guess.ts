@@ -18,14 +18,15 @@ export class GuessComponent {
 
   userAnswer = ''
 
+
   events = [];
 
   get ranking() {
-    return Settings.game.currentCard.ranking;
+    return Settings.game.currentCard['ranking']
   }
 
   set ranking(rankarray) {
-    Settings.game.currentCard.ranking = rankarray;
+    Settings.game.currentCard['ranking'] = rankarray;
   }
 
   get waitForCardResponse() {
@@ -49,7 +50,7 @@ export class GuessComponent {
   }
 
   get playerLeftCount() {
-    return this.guess.playerLeftCount;
+    return this.guess['playerLeftCount'];
   }
 
 

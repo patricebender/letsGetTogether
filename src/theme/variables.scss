@@ -52,6 +52,13 @@ $popover-wp-background: color($colors, cardColor);
 
 /* End Popover */
 
+/* Toggle */
+
+$toggle-ios-border-color-off:  color($colors, darkGreen);
+$toggle-ios-handle-background-color: color($colors, darkGreen);
+
+/* End Toggle */
+
 /* Toolbar */
 $toolbar-background: color($colors, dark);
 /* End Toolbar */
@@ -98,6 +105,15 @@ $alert-ios-checkbox-label-text-color-checked: darken(white, 20%);
 $alert-ios-button-background-color-activated: lighten(color($colors, cardColor), 10%);
 $alert-md-button-background-color-activated: lighten(color($colors, cardColor), 10%);
 $alert-wp-button-background-color-activated: lighten(color($colors, cardColor), 10%);
+
+$alert-ios-input-background-color: color($colors, cardColor);
+$alert-ios-input-border-color: color($colors, accentGreen);
+$alert-md-input-text-color: white;
+$alert-ios-input-text-color: white;
+
+$alert-ios-sub-title-text-color: color($colors, accentGreen);
+$alert-md-sub-title-text-color: color($colors, accentGreen);
+
 
 /* Alert End */
 
