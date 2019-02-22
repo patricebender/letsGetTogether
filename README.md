@@ -3,6 +3,7 @@
 
 Cheers is a round based, real-time drink game.
 In each round a random "Card" out of (currently) 4 categories gets emmited to all players in the current game session.
+
 The players can see the card on their devices and interact with it.
 Depending on the card-category, the further course of the round is dynamic.
 
@@ -11,7 +12,7 @@ Depending on the card-category, the further course of the round is dynamic.
 ## Development setup
 
 The `Cheers` Frontend is developed using the Ionic Framework and the Socket.io Client API.
-he Installation is straight forward:
+The Installation is straight forward:
 
 ```sh
 git clone https://github.com/GitP4tt/letsGetTogether.git
