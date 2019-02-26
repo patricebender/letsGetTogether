@@ -1,4 +1,5 @@
 # Cheers!
+
 > Frontend for social drinking game
 
 Cheers is a round based, real-time drink game.
@@ -6,6 +7,9 @@ In each round a random "Card" out of (currently) 4 categories gets emmited to al
 
 The players can see the card on their devices and interact with it.
 Depending on the card-category, the further course of the round is dynamic.
+
+Checkout the Cheers Frontend [here](https://github.com/GitP4tt/letsGetTogetherAPI)
+
 
 ![](header.png)
 
@@ -35,7 +39,7 @@ ionic serve
 
 Patrice – info@patrice.codes
 
-Distributed under the GoodBoy license. license. Please do whatever your mom would approve of:
+Distributed under the GoodBoy license. Please do whatever your mom would approve of:
 
 
 ## Contributing
