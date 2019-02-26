@@ -8,7 +8,7 @@ In each round a random "Card" out of (currently) 4 categories gets emmited to al
 The players can see the card on their devices and interact with it.
 Depending on the card-category, the further course of the round is dynamic.
 
-Checkout the Cheers Frontend [here](https://github.com/GitP4tt/letsGetTogetherAPI)
+Checkout the Cheers Backend [here](https://github.com/GitP4tt/letsGetTogetherAPI)
 
 
 ![](header.png)
