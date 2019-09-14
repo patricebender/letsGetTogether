@@ -16,9 +16,9 @@ import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avata
 import {CurseOverviewPageModule} from "../pages/popover/cursesOverview/curse-overview.module";
 
 /* Digital Ocean */
-const config: SocketIoConfig = { url:  'https://api.getto.patrice.codes', options: {}};
+// const config: SocketIoConfig = { url:  'https://api.getto.patrice.codes', options: {}};
 
-//const config: SocketIoConfig = {url: 'http://localhost:3001', options: {}};
+const config: SocketIoConfig = {url: 'http://localhost:8080', options: {}};
 
 /* Heidelberg */
 //const config: SocketIoConfig = {url: '192.168.2.102:3001', options: {}};
