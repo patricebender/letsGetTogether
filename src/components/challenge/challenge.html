@@ -1,0 +1,117 @@
+<!-- Generated template for the SurveyComponent component -->
+
+<ion-card class="rounded">
+  <ion-title>
+    <div *ngIf="challenge.player.socketId === user.socketId" class="cardTitle">
+      <b>Deine</b> Challenge ist:
+      "{{challenge.title}}"
+    </div>
+
+    <div *ngIf="challenge.player.socketId != user.socketId" padding-bottom class="cardTitle">
+      Die Challenge von <b>{{challenge.player.name}}</b> ist:
+      "{{challenge.title}}"
+    </div>
+  </ion-title>
+
+  <ion-row padding justify-content-center
+           *ngIf="challenge.player.socketId != user.socketId && (!challenge.isAccepted && !challenge.isDeclined && !challenge.playerQuit)">
+    <p padding-horizontal>Warte darauf, dass <b>{{challenge.player.name}}</b> die Challenge akzeptiert. </p>
+    <ion-spinner color="accentGreen"></ion-spinner>
+  </ion-row>
+
+
+  <ion-col padding *ngIf="challenge.player.socketId !== user.socketId && challenge.isAccepted">
+    <ion-row *ngIf="!challenge.closed">
+      <ion-label text-center class="wrapLine">Wie ist die Perfomance von <b>{{challenge.player.name}}</b>?</ion-label>
+    </ion-row>
+    <ion-row justify-content-center>
+      <button [disabled]="waitForCardResponse || challenge.closed" style="text-transform: none; font-size: 1.5rem"
+              (click)="emitSuccess()" ion-button large color="cardColor"
+              class="solidBorder rounded answer">
+        <ion-label no-margin class="wrapLine" padding-vertical> 👍{{waitForCardResponse || challenge.closed ?
+          ' x' + challenge.upVotes : ''}}
+        </ion-label>
+      </button>
+      <button [disabled]="waitForCardResponse || challenge.closed" style="text-transform: none; font-size: 1.5rem"
+              (click)="emitFail()" ion-button large color="cardColor"
+              class="solidBorder rounded answer">
+        <ion-label no-margin class="wrapLine" padding-vertical> 👎{{waitForCardResponse || challenge.closed ?
+          ' x' + challenge.downVotes : ''}}
+        </ion-label>
+      </button>
+    </ion-row>
+    <ion-row *ngIf="waitForCardResponse && !challenge.closed" padding justify-content-center>
+      <p padding-horizontal>Warte auf {{playerLeftCount === 1 ? " einen anderen Spieler" : playerLeftCount + " andere
+        Spieler"}}</p>
+      <ion-spinner color="accentGreen"></ion-spinner>
+    </ion-row>
+  </ion-col>
+
+  <ion-col class="centerText"
+           *ngIf="challenge.player.socketId === user.socketId && !challenge.isAccepted && !challenge.isDeclined">
+    <div *ngIf="game.playerCount > 1">
+      <ion-label class="wrapLine">Akzeptierst du diese Challenge?</ion-label>
+
+      <ion-row padding justify-content-center>
+
+        <button [disabled]="challenge.isAccepted || challenge.isDeclined"
+                style="text-transform: none; font-size: 1.5rem"
+                (click)="challengeDeclined()" ion-button large color="cardColor"
+                class="solidBorder rounded answer">
+          <ion-label class="wrapLine" padding-vertical> Nein ich trinke {{challenge.sips}}x🍻
+          </ion-label>
+        </button>
+        <button [disabled]="challenge.isAccepted || challenge.isDeclined"
+                style="text-transform: none; font-size: 1.5rem"
+                (click)="challengeAccepted()" ion-button large color="cardColor"
+                class="solidBorder rounded answer">
+          <ion-label class="wrapLine" padding-vertical> Klar
+          </ion-label>
+        </button>
+      </ion-row>
+
+    </div>
+    <div *ngIf=" game.playerCount == 1">
+      <ion-label class="wrapLine">
+        Warte auf andere Spieler, die deine Leistung beurteilen können.
+      </ion-label>
+    </div>
+
+  </ion-col>
+
+
+  <ion-col class="centerText" *ngIf="challenge.player.socketId === user.socketId && challenge.isAccepted">
+    <ion-label class="wrapLine">Viel Glück 🍀</ion-label>
+    <ion-label class="wrapLine">Die anderen entscheiden über dein Schicksal.</ion-label>
+  </ion-col>
+
+
+  <div justify-content-start *ngIf="challenge.closed">
+    <ion-grid class="answerGrid">
+      <ion-row align-items-center>
+        <ion-col>
+          <div>
+            {{challenge.isAccepted && (challenge.upVotes > challenge.downVotes) ? '✅' : '❌'}}<br>
+          </div>
+        </ion-col>
+        <ion-col col-6>
+          <div>
+            {{challenge.player.socketId === user.socketId ? "Du hast die" : challenge.player.name + " hat "}}
+            <br> <b>{{challenge.isDeclined ? "die Challenge nicht akzeptiert." : challenge.failed ? "die Challenge verkackt." : challenge.playerQuit ? "das Spiel Verlassen. 💩" :
+            "die Challenge bestanden"}}</b>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div style="text-align: right;">
+            {{challenge.isAccepted && (challenge.upVotes > challenge.downVotes) ? "0": challenge.player.multiplier * game.multiplier * challenge.sips}} x 🍺
+          </div>
+        </ion-col>
+      </ion-row>
+
+
+    </ion-grid>
+
+
+  </div>
+
+</ion-card>
