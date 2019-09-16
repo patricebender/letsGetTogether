@@ -15,10 +15,10 @@ import {JoinSessionPageModule} from "../pages/join-session/join-session.module";
 import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avatar.module";
 import {CurseOverviewPageModule} from "../pages/popover/cursesOverview/curse-overview.module";
 
-/* Digital Ocean */
-// const config: SocketIoConfig = { url:  'https://api.getto.patrice.codes', options: {}};
+/* Heroku */
+const config: SocketIoConfig = { url:  'api.lgfu.patrice.codes', options: {}};
 
-const config: SocketIoConfig = {url: 'http://localhost:8080', options: {}};
+//const config: SocketIoConfig = {url: 'localhost:8080', options: {}};
 
 /* Heidelberg */
 //const config: SocketIoConfig = {url: '192.168.2.102:3001', options: {}};
