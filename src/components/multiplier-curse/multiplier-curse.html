@@ -1,0 +1,8 @@
+<ion-card class="rounded">
+  <h2 text-center padding-top><b> {{curse.playerSocketId === user.socketId ? 'Du wurdest': curse.cursedPlayer + ' wurde'}} verflucht! 🧙</b></h2>
+  <h2 text-center padding><b>{{curse.playerSocketId === user.socketId ? 'Dein Multiplikator': 'Der Multiplikator von ' + curse.cursedPlayer}}</b> wird für <b>{{curse.roundsLeft === 1? 'eine Runde' : curse.roundsLeft + ' Runden'}}</b> um
+    <b>{{curse.multiplier}}</b> erhöht
+  </h2>
+
+</ion-card>
+
