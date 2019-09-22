@@ -1,45 +1,25 @@
-
-
-
 <ion-content class="darkBackground">
-  <div ion-fixed padding-top>
+  <div ion-fixed padding-top class="centerContent flexColumn">
 
-    <ion-card  class="roundedCorners">
-      <ion-list no-lines>
-        <ion-list-header>Dein Profil:</ion-list-header>
-        <ion-item tappable="true" (click)="goToUserSettings()">
-          <ion-avatar class="miniAvatar" item-start>
-            <img src="../../assets/avatar/{{user.avatar}}">
-          </ion-avatar>
-          <h2>{{user.name}}</h2>
-          <p>I am the Liquor.</p>
-          <ion-icon item-end name="arrow-forward"></ion-icon>
-        </ion-item>
-      </ion-list>
-    </ion-card>
+
+    <ion-img class="roundedCorners" style="background: transparent; height: 20em; width: 20em;" align-self-center
+             src="assets/icon.svg">
+    </ion-img>
+    <ion-img class="roundedCorners" style="background: transparent; width: 20em; height: 4em"
+             align-self-center  src="assets/lgfu.svg">
+    </ion-img>
 
     <ion-card class="roundedCorners">
+      <ion-item text-center padding-vertical tappable="true" (click)="showJoinGameAlert()">
+        <ion-label>🍻 Raum beitreten 🍻</ion-label>
 
-
-     <ion-list  no-lines>
-       <ion-list-header>Spiel beitreten:</ion-list-header>
-       <ion-item padding-bottom>
-         <ion-label stacked>Raum Name:</ion-label>
-         <ion-input class="solidBorderBottom" [(ngModel)]="room" type="text" value=""></ion-input>
-       </ion-item>
-       <ion-row padding-bottom justify-content-center>
-         <button (click)="joinRoomRequest()" ion-button color="cardColor" [disabled]="!user.name || !room" class="solidBorder rounded" large>
-           <ion-icon name="play" color="accentGreen"></ion-icon>
-         </button>
-       </ion-row>
-     </ion-list>
+      </ion-item>
 
     </ion-card>
 
     <ion-card class="roundedCorners">
-      <ion-item padding-vertical="" tappable="true" (click)="goToCreateRoom()">
-        <ion-label item-start>Raum erstellen</ion-label>
-        <ion-icon item-end name="arrow-forward"></ion-icon>
+      <ion-item text-center padding-vertical tappable="true" (click)="goToCreateRoom()">
+        <ion-label>🆕 Raum erstellen 🆕</ion-label>
       </ion-item>
     </ion-card>
   </div>

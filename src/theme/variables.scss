@@ -106,7 +106,7 @@ $alert-ios-button-background-color-activated: lighten(color($colors, cardColor),
 $alert-md-button-background-color-activated: lighten(color($colors, cardColor), 10%);
 $alert-wp-button-background-color-activated: lighten(color($colors, cardColor), 10%);
 
-$alert-ios-input-background-color: color($colors, cardColor);
+$alert-ios-input-background-color:  darken(white, 20%);
 $alert-ios-input-border-color: color($colors, accentGreen);
 $alert-md-input-text-color: white;
 $alert-ios-input-text-color: white;

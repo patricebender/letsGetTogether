@@ -1,5 +1,12 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, LoadingController, NavController, Platform, ToastController} from 'ionic-angular';
+import {
+  AlertController,
+  IonicPage,
+  LoadingController,
+  NavController,
+  Platform,
+  ToastController
+} from 'ionic-angular';
 import {Socket} from "ng-socket-io";
 import {Observable} from "rxjs";
 import {Settings} from "../settings";
@@ -64,8 +71,8 @@ export class JoinSessionPage {
     })
   }
 
-  joinRoomRequest() {
-    this.socket.emit('joinRoomRequest', {user: this.user, room: this.room})
+  joinRoomRequest(roomName) {
+    this.socket.emit('joinRoomRequest', {user: this.user, room: roomName ? roomName : this.room})
   }
 
   onRoomFound() {
@@ -121,5 +128,42 @@ export class JoinSessionPage {
   }
 
 
+  showJoinGameAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Join Game',
+      inputs: [
+        {
+          name: 'roomName',
+        }
+      ],
+      buttons: [
+        {
+          text: 'Abbrechen',
+          role: 'cancel',
+        },
+        {
+          text: 'Beitreten',
+          handler: data => {
+            if (data.roomName === "") {
+              this.presentInputNotValid('Raum Name darf nicht leer sein!')
+              return false;
+            } else {
+              this.joinRoomRequest(data.roomName);
+            }
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  presentInputNotValid(reason) {
+    let alert = this.alertCtrl.create({
+      title: 'Deine Eingabe passt nicht ganz..',
+      subTitle: reason,
+      buttons: ['Ok']
+    });
+    alert.present();
+  }
 }
 
