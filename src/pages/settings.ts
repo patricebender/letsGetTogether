@@ -144,17 +144,32 @@ export class Settings {
 
   static listenForReconnection(socket: Socket, plt: Platform, loadingCtrl: LoadingController, navCtrl: NavController) {
 
+
+
     if (!Settings.isListeningForReconnection) {
       let waiting = loadingCtrl.create({
         content: 'Warte auf Antwort aus der Brauerei…'
       });
 
-      // Cordova resume event
-      plt.resume.subscribe(() => {
-        console.log("Application resumed");
-        socket.emit('reconnectRequest', {user: Settings.user, lastRoom: Settings.room});
-        waiting.present();
-      });
+
+      if(plt.is('mobileweb')){
+        let lastSync = 0;
+        const syncInterval = 5000;
+        setInterval(function() {
+          const now = new Date().getTime();
+          if ((now - lastSync) > syncInterval && !socket.ioSocket.connected) {
+              socket.emit('reconnectRequest', {user: Settings.user, lastRoom: Settings.room});
+              waiting.present();
+          }
+        }, 5000); //check every 5 seconds whether a minute has passed since last sync
+      }else{
+        // Cordova resume event
+        plt.resume.subscribe(() => {
+          console.log("Application resumed");
+          socket.emit('reconnectRequest', {user: Settings.user, lastRoom: Settings.room});
+          waiting.present();
+        });
+      }
 
 
       socket.on('userReconnected', () => {
@@ -173,6 +188,8 @@ export class Settings {
     }
 
   }
+
+
 
   static isUserListSubscribed = false;
 
