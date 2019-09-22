@@ -16,9 +16,9 @@ import {ChooseAvatarPageModule} from "../pages/popover/chooseAvatar/choose-avata
 import {CurseOverviewPageModule} from "../pages/popover/cursesOverview/curse-overview.module";
 
 /* Heroku */
-// const config: SocketIoConfig = { url:  'https://letsgetfuckedupapi.herokuapp.com/', options: {}};
+const config: SocketIoConfig = { url:  'https://letsgetfuckedupapi.herokuapp.com/', options: {}};
 
-const config: SocketIoConfig = {url: 'localhost:8080', options: {}};
+//const config: SocketIoConfig = {url: 'localhost:8080', options: {}};
 
 /* Heidelberg */
 //const config: SocketIoConfig = {url: '192.168.2.102:3001', options: {}};
