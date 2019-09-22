@@ -52,6 +52,7 @@
     "mem": "^5.1.1",
     "morgan": "^1.9.1",
     "ng-socket-io": "^0.2.4",
+    "ngx-socket-io": "^3.0.1",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
     "typescript": "~2.9.2",

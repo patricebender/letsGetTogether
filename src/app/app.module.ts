@@ -3,7 +3,7 @@ import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {StatusBar} from '@ionic-native/status-bar';
-import {SocketIoModule, SocketIoConfig} from 'ng-socket-io';
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io';
 import {Device} from "@ionic-native/device";
 import {TapticEngine} from "@ionic-native/taptic-engine";
 

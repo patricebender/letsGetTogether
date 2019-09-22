@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, PopoverController} from 'ionic-angular';
 import {Settings} from "../settings";
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {ChooseAvatarPage} from "../popover/chooseAvatar/chooseAvatar";
 import {Device} from '@ionic-native/device';
 

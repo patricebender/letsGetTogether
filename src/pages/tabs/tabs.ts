@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, Tabs, ToastController} from 'ionic-angular';
 import {Settings} from "../settings";
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {Observable} from "rxjs";
 
 /**

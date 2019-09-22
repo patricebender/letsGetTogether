@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams, PopoverController, ToastController} from 'ionic-angular';
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {Settings} from "../settings";
 import {TapticEngine} from "@ionic-native/taptic-engine";
 import {CurseOverviewPage} from "../popover/cursesOverview/curse-overview";

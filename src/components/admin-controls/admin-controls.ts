@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {Settings} from "../../pages/settings";
 import {NavController} from "ionic-angular";
 

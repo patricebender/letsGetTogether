@@ -7,7 +7,7 @@ import {
   Platform,
   ToastController
 } from 'ionic-angular';
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {Observable} from "rxjs";
 import {Settings} from "../settings";
 import {Device} from "@ionic-native/device";

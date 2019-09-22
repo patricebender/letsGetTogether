@@ -1,4 +1,4 @@
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {Device} from "@ionic-native/device";
 import {LoadingController, NavController, Platform} from "ionic-angular";
 import {TapticEngine} from "@ionic-native/taptic-engine";
@@ -155,6 +155,7 @@ export class Settings {
         socket.emit('reconnectRequest', {user: Settings.user, lastRoom: Settings.room});
         waiting.present();
       });
+
 
       socket.on('userReconnected', () => {
         console.log("User reconnected, nav to Lobby");

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Settings} from "../../pages/settings";
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 
 /**
  * Generated class for the GameOverComponent component.

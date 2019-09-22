@@ -1,7 +1,7 @@
 import {ViewController} from "ionic-angular";
 import {Component} from "@angular/core";
 import {Settings} from "../../settings";
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 
 @Component({
   template: `

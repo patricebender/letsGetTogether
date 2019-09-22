@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Settings} from "../settings";
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 
 /**
  * Generated class for the PlayerOverviewPage page.

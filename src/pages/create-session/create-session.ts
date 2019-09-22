@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {Settings} from "../settings";
-import {Socket} from "ng-socket-io";
+import {Socket} from "ngx-socket-io";
 import {Observable} from "rxjs";
 import {Device} from "@ionic-native/device";
 import {TabsPage} from "../tabs/tabs";
