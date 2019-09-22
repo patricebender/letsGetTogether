@@ -151,17 +151,23 @@ export class Settings {
         content: 'Warte auf Antwort aus der Brauerei…'
       });
 
+      let isWaiting = false;
 
       if(plt.is('mobileweb')){
         let lastSync = 0;
         const syncInterval = 5000;
+
+
+
         setInterval(function() {
           const now = new Date().getTime();
-          if ((now - lastSync) > syncInterval && !socket.ioSocket.connected) {
+          console.log(socket.ioSocket.connected ? "connected" : "not connected")
+          if ((now - lastSync) > syncInterval && !socket.ioSocket.connected && !isWaiting) {
               socket.emit('reconnectRequest', {user: Settings.user, lastRoom: Settings.room});
               waiting.present();
+              isWaiting = true;
           }
-        }, 5000); //check every 5 seconds whether a minute has passed since last sync
+        }, 2000); //check every 2 seconds whether a minute has passed since last sync
       }else{
         // Cordova resume event
         plt.resume.subscribe(() => {
@@ -175,6 +181,7 @@ export class Settings {
       socket.on('userReconnected', () => {
         console.log("User reconnected, nav to Lobby");
         waiting.dismiss();
+        isWaiting = false;
         navCtrl.setRoot('JoinSessionPage');
       });
 
@@ -182,6 +189,7 @@ export class Settings {
         console.log("User reconnected to Game!");
         Settings.game = data.game;
         waiting.dismiss();
+        isWaiting = false;
       });
 
       Settings.isListeningForReconnection = true;
