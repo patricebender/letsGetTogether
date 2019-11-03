@@ -83,9 +83,17 @@
 }
 
 .flexColumn {
+  display: flex;
   flex-direction: column;
 }
 
+.centerVertical {
+  justify-content: center;
+}
+
+.centerItems {
+  align-items: center;
+}
 
 .solidBorder {
   border: solid 1px color($colors, accentGreen);
