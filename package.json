@@ -46,7 +46,7 @@
     "cryptiles": "^4.1.3",
     "express": "^4.17.3",
     "hoek": "^6.1.3",
-    "ionic": "4.12.0",
+    "ionic": "5.4.16",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "mem": "^5.1.1",
